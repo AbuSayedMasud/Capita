@@ -27,10 +27,12 @@ class HomeActivity : ComponentActivity() {
                 Column {
                     Box(modifier = Modifier.fillMaxWidth()) {
                         MyAppBar(
+                            context = this@HomeActivity,
                             title = "Capita",
                             onSearch = { searchText ->
                                 // What happens when the search button is clicked
-                            }
+                            },
+                            showSearchBar = false
                         )
                     }
                     MainScreenBottomBar()
