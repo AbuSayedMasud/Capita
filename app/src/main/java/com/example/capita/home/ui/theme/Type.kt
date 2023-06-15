@@ -1,4 +1,4 @@
-package com.example.capita.HomePageModule.ui.theme
+package com.example.capita.home.ui.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle

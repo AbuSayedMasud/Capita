@@ -1,4 +1,4 @@
-package com.example.capita.LogInModule.ui.theme
+package com.example.capita.logIn.ui.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle

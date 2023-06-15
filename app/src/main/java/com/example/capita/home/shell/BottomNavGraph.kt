@@ -1,10 +1,11 @@
-package com.example.capita.BottomBar
+package com.example.capita.home.shell
 
 import androidx.compose.runtime.Composable
 
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.capita.home.bottomScreen.*
 import com.example.capita.screen.bottomScreen.*
 
 

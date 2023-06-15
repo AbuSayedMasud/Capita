@@ -1,4 +1,4 @@
-package com.example.capita.screen.loginScreen
+package com.example.capita.logIn.loginScreen
 
 import android.content.Intent
 import android.widget.Toast
@@ -31,7 +31,7 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.sp
-import com.example.capita.HomePageModule.HomeActivity
+import com.example.capita.home.HomeActivity
 import com.example.capita.R
 import com.example.capita.service.security.IdentityServiceImpl
 

@@ -12,12 +12,12 @@
         android:theme="@style/Theme.Capita"
         tools:targetApi="31">
         <activity
-            android:name=".HomePageModule.HomeActivity"
+            android:name=".home.HomeActivity"
             android:exported="false"
             android:label="@string/title_activity_home"
             android:theme="@style/Theme.Capita" />
         <activity
-            android:name=".LogInModule.LogInActivity"
+            android:name=".logIn.LogInActivity"
             android:exported="true"
             android:label="@string/title_activity_log_in"
             android:theme="@style/Theme.Capita">

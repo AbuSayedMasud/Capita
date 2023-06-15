@@ -1,4 +1,4 @@
-package com.example.capita.HomePageModule
+package com.example.capita.home
 
 import SetStatusBarColor
 import android.os.Bundle
@@ -8,9 +8,9 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import com.example.capita.BottomBar.MainScreenBottomBar
-import com.example.capita.HomePageModule.ui.theme.CapitaTheme
-import com.example.capita.screen.topBarScreen.MyAppBar
+import com.example.capita.home.shell.MainScreenBottomBar
+import com.example.capita.home.ui.theme.CapitaTheme
+import com.example.capita.home.topBarScreen.MyAppBar
 import com.example.capita.service.instrument.InstrumentServiceImpl
 
 class HomeActivity : ComponentActivity() {

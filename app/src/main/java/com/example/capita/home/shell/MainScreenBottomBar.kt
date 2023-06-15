@@ -1,10 +1,8 @@
-package com.example.capita.BottomBar
+package com.example.capita.home.shell
 
 
-import SetStatusBarColor
 import android.annotation.SuppressLint
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.*
@@ -17,8 +15,6 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.core.view.WindowCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -31,7 +27,7 @@ import androidx.navigation.compose.rememberNavController
 fun MainScreenBottomBar() {
     val navController= rememberNavController()
 //
-    Scaffold(bottomBar = { bottomBar(navController = navController)}) {
+    Scaffold(bottomBar = { bottomBar(navController = navController) }) {
         BottomNavGraph(navController = navController)
     }
 }

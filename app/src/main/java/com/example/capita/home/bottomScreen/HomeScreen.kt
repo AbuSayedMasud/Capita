@@ -1,4 +1,4 @@
-package com.example.capita.screen.bottomScreen
+package com.example.capita.home.bottomScreen
 
 
 import androidx.compose.foundation.layout.Box
@@ -12,12 +12,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
-fun MoreScreen(){
+fun HomeScreen(){
     Box(modifier=Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ){
         Text(
-            text = "More",
+            text = "Home",
             color = MaterialTheme.colors.primary,
             fontSize = MaterialTheme.typography.h3.fontSize,
             fontWeight = FontWeight.Bold
@@ -27,6 +27,6 @@ fun MoreScreen(){
 }
 @Composable
 @Preview(showBackground = true)
-fun MoreScreenPreview(){
-    MoreScreen()
+fun HomeScreenPreview(){
+    HomeScreen()
 }

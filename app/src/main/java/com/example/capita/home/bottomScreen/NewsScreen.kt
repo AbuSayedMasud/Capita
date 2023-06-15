@@ -1,4 +1,4 @@
-package com.example.capita.screen.bottomScreen
+package com.example.capita.home.bottomScreen
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize

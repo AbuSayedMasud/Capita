@@ -1,4 +1,4 @@
-package com.example.capita.HomePageModule.ui.theme
+package com.example.capita.logIn.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme

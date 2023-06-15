@@ -1,4 +1,4 @@
-package com.example.capita.BottomBar
+package com.example.capita.home.shell
 
 import com.example.capita.R
 

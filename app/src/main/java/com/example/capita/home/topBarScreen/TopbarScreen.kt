@@ -1,4 +1,4 @@
-package com.example.capita.screen.topBarScreen
+package com.example.capita.home.topBarScreen
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
