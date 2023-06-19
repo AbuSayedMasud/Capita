@@ -17,9 +17,9 @@ class HomeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         var service = InstrumentServiceImpl();
-        for (i: com.example.capita.instrument.Instrument in service.listInstrument()){
-            Log.d("HomeActivity", i.name)
-        }
+//        for (i: com.example.capita.instrument.Instrument in service.listInstrument()){
+//            Log.d("HomeActivity", i.name)
+//        }
         setContent {
             SetStatusBarColor(Color(0xFF0E2B26),Color(0xFF0E2B26))
             CapitaTheme {
@@ -27,10 +27,12 @@ class HomeActivity : ComponentActivity() {
                 Column {
                     Box(modifier = Modifier.fillMaxWidth()) {
                         MyAppBar(
+                            context = this@HomeActivity,
                             title = "Capita",
                             onSearch = { searchText ->
                                 // What happens when the search button is clicked
-                            }
+                            },
+                            showSearchBar = false
                         )
                     }
                     MainScreenBottomBar()

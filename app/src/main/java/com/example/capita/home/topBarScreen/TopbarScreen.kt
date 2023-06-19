@@ -1,4 +1,8 @@
 package com.example.capita.home.topBarScreen
+
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -26,13 +30,15 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun MyAppBar(
+    context: Context,
     title: String,
-    onSearch: (String) -> Unit
+    onSearch: (String) -> Unit,
+    showSearchBar: Boolean = false
 ) {
     var searchText by remember { mutableStateOf("") } // Maintain the state of the search text
-    var isSearching by remember { mutableStateOf(false) } // Maintain the state of whether the user is searching or not
+    var isSearching by remember { mutableStateOf(showSearchBar) } // Maintain the state of whether the user is searching or not
 
-    val painter = painterResource(id =R.drawable.logo)
+    val painter = painterResource(id = R.drawable.logo)
     val myCustomColor = Color(0xFF006A4E)
 
     TopAppBar(
@@ -41,10 +47,6 @@ fun MyAppBar(
          */
         title = {
             if (isSearching) {
-//                Surface(
-//                    shape = MaterialTheme.shapes.small,
-//                    modifier = Modifier.fillMaxWidth()
-//                )
                 TextField(
                     value = searchText,
                     onValueChange = { newText ->
@@ -56,7 +58,11 @@ fun MyAppBar(
                         .padding(start = 0.dp, end = 10.dp, top = 2.dp, bottom = 2.dp),
                     placeholder = { Text("Search") },
                     leadingIcon = {
-                        IconButton(onClick = { isSearching = false }) {
+                        IconButton(onClick = {
+                            if (context is Activity) {
+                                context.finish()
+                            }
+                        }) {
                             Icon(Icons.Filled.ArrowBack, contentDescription = null)
                         }
                     },
@@ -80,14 +86,21 @@ fun MyAppBar(
                 )
 
             } else {
-                Text(text = title, color = Color.White) // If not in search mode, just display the title
+                Text(
+                    text = title,
+                    color = Color.White
+                ) // If not in search mode, just display the title
             }
         },
 
         // If the user is not currently searching, the title of the app is displayed.
         actions = {
             if (!isSearching) {
-                IconButton(onClick = { isSearching = true }) {
+                IconButton(onClick = {
+                    //Open SearchActivity
+                    val intent = Intent(context, SearchActivity::class.java)
+                    context.startActivity(intent)
+                }) {
                     Icon(Icons.Filled.Search, contentDescription = null, tint = Color.White)
                 }
             }
@@ -107,8 +120,8 @@ fun MyAppBar(
         backgroundColor = myCustomColor
     )
 }
-@Preview(showBackground = true)
-@Composable
-fun MyAppBarPreview() {
-    MyAppBar(title = "My App", onSearch = {})
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun MyAppBarPreview() {
+//    MyAppBar(title = "My App", onSearch = {})
+//}
