@@ -5,10 +5,8 @@ import android.content.Context
 import android.content.Intent
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.getValue
@@ -18,9 +16,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -55,34 +52,51 @@ fun MyAppBar(
                     },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(start = 0.dp, end = 10.dp, top = 2.dp, bottom = 2.dp),
-                    placeholder = { Text("Search") },
+                        .offset(x = (-8).dp), // Adjust this value to move the search icon and placeholder to the left
+
+                    placeholder = {
+                        Text(
+                            text = "Search",
+                            color = Color.White
+                        )
+                    },
                     leadingIcon = {
-                        IconButton(onClick = {
-                            if (context is Activity) {
-                                context.finish()
-                            }
-                        }) {
-                            Icon(Icons.Filled.ArrowBack, contentDescription = null)
+                        IconButton(onClick = { }) {
+                            Icon(Icons.Filled.Search, contentDescription = null, tint = Color.White)
                         }
                     },
                     trailingIcon = {
                         if (searchText.isNotEmpty()) {
                             IconButton(onClick = { searchText = "" }) {
-                                Icon(Icons.Filled.Close, contentDescription = null)
+                                Icon(
+                                    Icons.Filled.Close,
+                                    contentDescription = null,
+                                    tint = Color.White
+                                )
+                            }
+                        } else {
+                            IconButton(onClick = {
+                                if (context is Activity) {
+                                    context.finish()
+                                }
+                            }) {
+                                Icon(
+                                    Icons.Filled.Close,
+                                    contentDescription = null,
+                                    tint = Color.White
+                                )
                             }
                         }
                     },
                     textStyle = TextStyle(fontSize = 14.sp, fontWeight = FontWeight.Light),
                     colors = TextFieldDefaults.textFieldColors(
-                        backgroundColor = Color.White,
-                        textColor = Color.DarkGray,
-                        cursorColor = Color.DarkGray,
+                        backgroundColor = Color.Transparent,
+                        textColor = Color.White,
+                        cursorColor = Color.White.copy(alpha = ContentAlpha.medium),
                         focusedIndicatorColor = Color.Transparent,
                         unfocusedIndicatorColor = Color.Transparent,
                         disabledIndicatorColor = Color.Transparent
                     ),
-                    shape = RoundedCornerShape(50) // This sets the corners of the TextField to be rounded
                 )
 
             } else {

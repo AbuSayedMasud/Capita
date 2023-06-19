@@ -16,10 +16,6 @@ import com.example.capita.service.instrument.InstrumentServiceImpl
 class HomeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        var service = InstrumentServiceImpl();
-//        for (i: com.example.capita.instrument.Instrument in service.listInstrument()){
-//            Log.d("HomeActivity", i.name)
-//        }
         setContent {
             SetStatusBarColor(Color(0xFF0E2B26),Color(0xFF0E2B26))
             CapitaTheme {
