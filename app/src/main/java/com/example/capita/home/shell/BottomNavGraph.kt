@@ -6,7 +6,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.capita.home.bottomScreen.*
-import com.example.capita.screen.bottomScreen.*
 
 
 @Composable
