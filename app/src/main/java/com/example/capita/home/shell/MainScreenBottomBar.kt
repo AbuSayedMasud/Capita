@@ -88,8 +88,8 @@ fun RowScope.AddItem(
 
     )
 }
-@Preview(showBackground = true)
-@Composable
-fun PreviewMainScreenBottomBar() {
-    MainScreenBottomBar()
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun PreviewMainScreenBottomBar() {
+//    MainScreenBottomBar()
+//}
