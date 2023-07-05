@@ -1,5 +1,6 @@
 package com.example.capita.service.instrument
 
+import com.example.capita.index.Indices
 import com.example.capita.instrument.Instrument
 import com.example.capita.instrument.InstrumentService
 import com.example.service.protype.R
@@ -340,7 +341,8 @@ class InstrumentServiceImpl : InstrumentService {
         )
     )
 
-    override fun listInstrument(searchText: String): List<com.example.capita.instrument.Instrument> {
+
+    override fun stockSearch(searchText: String): List<com.example.capita.instrument.Instrument> {
         if (searchText.isBlank()) {
             return emptyList()
         }
@@ -361,6 +363,10 @@ class InstrumentServiceImpl : InstrumentService {
 //                                .contains(lowerCaseSearchText)
                     )
         }
+    }
+
+    override fun listInstrument(): List<Instrument> {
+        return instruments
     }
 }
 //        val instr1 = com.example.capita.instrument.Instrument(

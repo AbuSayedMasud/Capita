@@ -1,4 +1,4 @@
-package com.example.capita.home.topBarScreen
+package com.example.capita.home.shell
 
 import android.app.Activity
 import android.content.Context

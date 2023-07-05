@@ -1,4 +1,4 @@
-package com.example.capita.home.sectionBar
+package com.example.capita.home.homeScreen.sectionBar
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -24,9 +24,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import kotlin.text.Typography.section
 
 @Composable
-fun scrollingSectionBar() {
+fun scrollingSectionBar(selectedSection: String, onSectionSelected: (String) -> Unit) {
     var selectedSection by remember { mutableStateOf("Overview") }
 
     val normalColor = Color.Gray
@@ -40,6 +41,7 @@ fun scrollingSectionBar() {
 //        "Crypto",
 //        "Future Indices"
     )
+
     val lighterAppBarColor = Color(0xFFD1DED0)
 
     Row(
@@ -60,7 +62,10 @@ fun scrollingSectionBar() {
                             MutableInteractionSource()
                         },
                         indication = null,
-                        onClick = { selectedSection = section }
+                        onClick = {
+                            selectedSection = section
+                            onSectionSelected(section)
+                        }
                     )
             ) {
                 Text(
@@ -74,8 +79,8 @@ fun scrollingSectionBar() {
     }
 }
 
-@Preview
-@Composable
-fun PreviewScrollingSectionBar() {
-    scrollingSectionBar()
-}
+//@Preview
+//@Composable
+//fun PreviewScrollingSectionBar() {
+//    scrollingSectionBar()
+//}

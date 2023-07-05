@@ -1,5 +1,8 @@
 package com.example.capita.instrument
 
+import com.example.capita.index.Indices
+
 interface InstrumentService {
-    fun listInstrument(searchText: String): List<Instrument>
+    fun stockSearch(searchText: String): List<Instrument>
+    fun listInstrument(): List<Instrument>
 }

@@ -1,4 +1,4 @@
-package com.example.capita.home.topBarScreen
+package com.example.capita.home.homeScreen.stocks
 
 
 import androidx.compose.foundation.Image

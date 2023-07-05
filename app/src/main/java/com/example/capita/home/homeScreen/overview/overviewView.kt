@@ -1,4 +1,4 @@
-package com.example.capita.home.sectionBar
+package com.example.capita.home.homeScreen.overview
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -12,12 +12,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.capita.index.Indices
-import com.example.service.protype.R
+import androidx.compose.ui.unit.sp
+import com.example.capita.overview.Overview
 
 @Composable
-fun CardView(index: Indices) {
+fun CardView(overview: Overview) {
+
     Card(
         modifier = Modifier.padding(16.dp, 8.dp),
         elevation = 8.dp,
@@ -30,12 +30,12 @@ fun CardView(index: Indices) {
                 Row(modifier = Modifier.fillMaxWidth()) {
                     // First Row - Icon and Full Name
                     Image(
-                        painter = painterResource(id = index.icon),
+                        painter = painterResource(id = overview.icon),
                         contentDescription = null,
                         modifier = Modifier.size(32.dp)
                     )
                     Text(
-                        text = index.shortName,
+                        text = overview.shortName,
                         modifier = Modifier.padding(start = 8.dp, top = 4.dp),
                         style = MaterialTheme.typography.body1.copy(fontWeight = FontWeight.Bold)
                     )
@@ -47,7 +47,7 @@ fun CardView(index: Indices) {
                 ) {
                     // Second Row - Short Name, Equity, Market
                     Text(
-                        text = index.longName,
+                        text = overview.longName,
 //                        modifier = Modifier.padding(start = 8.dp, top = 4.dp),
                         style = MaterialTheme.typography.body2
                     )
@@ -62,9 +62,10 @@ fun CardView(index: Indices) {
                 ) {
                     // First Row - Value
                     Text(
-                        text = index.amount.toString(),
+                        text = overview.amount.toString(),
                         style = MaterialTheme.typography.subtitle1,
-                        modifier = Modifier.padding(start = 24.dp)
+                        modifier = Modifier.padding(start = 30.dp),
+                        fontSize = 14.sp
                     )
                 }
                 Column(
@@ -79,38 +80,39 @@ fun CardView(index: Indices) {
                         modifier = Modifier.padding(start = 30.dp)
                     ) {
                         Image(
-                            painter = painterResource(id = index.changeIcon),
+                            painter = painterResource(id = overview.changeIcon),
                             contentDescription = null,
                             modifier = Modifier
                                 .size(10.dp)
                         )
                         Text(
-                            text = index.increase.toString(),
-                            style = MaterialTheme.typography.body1
+                            text = overview.increase.toString(),
+                            style = MaterialTheme.typography.body1,
+                            fontSize = 14.sp
                         )
                     }
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
-                        modifier = Modifier.padding(start = 30.dp)
+                        modifier = Modifier.padding(start = 32.dp)
                     ) {
                         Text(
-                            "("
+                            "(", fontSize = 14.sp
                         )
-                        if (index.percentage.toString() == "-") {
+                        if (overview.percentage.toString() == "-") {
                             Image(
-                                painter = painterResource(id = index.changeIcon),
+                                painter = painterResource(id = overview.changeIcon),
                                 contentDescription = null,
                                 modifier = Modifier
-                                    .size(16.dp)
-
+                                    .size(12.dp)
                             )
                         }
                         Text(
-                            text = index.percentage.toString(),
-                            style = MaterialTheme.typography.body1
+                            text = overview.percentage.toString(),
+                            style = MaterialTheme.typography.body1,
+                            fontSize = 14.sp
 
-                            )
-                        Text(")")
+                        )
+                        Text(")", fontSize = 14.sp)
                     }
                 }
             }
@@ -118,20 +120,20 @@ fun CardView(index: Indices) {
     }
 }
 
-@Preview
-@Composable
-fun CardViewPreview() {
-    val sampleIndex = Indices(
-        icon = R.drawable.logo1,
-        longName = "DSEX Index",
-        shortName = "DSEX",
-        amount = 6331.36305,
-        increase = 11.93465,
-        percentage = 0.18815,
-        changeIcon = R.drawable.minus
-    )
-
-    MaterialTheme {
-        CardView(index = sampleIndex)
-    }
-}
+//@Preview
+//@Composable
+//fun CardViewPreview() {
+//    val sampleIndex = Overview(
+//        icon = R.drawable.logo1,
+//        longName = "DSEX Index",
+//        shortName = "DSEX",
+//        amount = 6331.36305,
+//        increase = 11.93465,
+//        percentage = 0.18815,
+//        changeIcon = R.drawable.minus
+//    )
+//
+//    MaterialTheme {
+//        CardView(overview = sampleIndex)
+//    }
+//}
