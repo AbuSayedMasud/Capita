@@ -10,14 +10,20 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.material.MaterialTheme
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.sp
 import com.example.capita.index.Indices
 import com.example.service.protype.R
 
 @Composable
 fun IndexView(index: Indices) {
+    val configuration = LocalConfiguration.current
+    val screenWidth = configuration.screenWidthDp.dp
+    val screenHeight = configuration.screenHeightDp.dp
+
     Card(
         modifier = Modifier.padding(16.dp, 8.dp),
         elevation = 8.dp,
@@ -48,25 +54,12 @@ fun IndexView(index: Indices) {
                     // Second Row - Short Name, Equity, Market
                     Text(
                         text = index.longName,
-//                        modifier = Modifier.padding(start = 8.dp, top = 4.dp),
                         style = MaterialTheme.typography.body2
                     )
-
                 }
             }
             // Second Column
             Column(modifier = Modifier.weight(2f)) {
-                Column(
-                    modifier = Modifier.fillMaxHeight(),
-                    verticalArrangement = Arrangement.Center
-                ) {
-                    // First Row - Value
-                    Text(
-                        text = index.amount.toString(),
-                        style = MaterialTheme.typography.subtitle1,
-                        modifier = Modifier.padding(start = 24.dp)
-                    )
-                }
                 Column(
                     modifier = Modifier
                         .fillMaxHeight()
@@ -76,7 +69,17 @@ fun IndexView(index: Indices) {
                     // Second Row - Closed Price and Change
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
-                        modifier = Modifier.padding(start = 30.dp)
+                        modifier = Modifier.align(Alignment.End).padding(start = screenWidth * 0.08f)
+                    ) {
+                        Text(
+                            text = index.amount.toString(),
+                            style = MaterialTheme.typography.subtitle1,
+                            fontSize = 14.sp
+                        )
+                    }
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier.align(Alignment.End).padding(start = screenWidth * 0.08f)
                     ) {
                         Image(
                             painter = painterResource(id = index.changeIcon),
@@ -86,31 +89,31 @@ fun IndexView(index: Indices) {
                         )
                         Text(
                             text = index.increase.toString(),
-                            style = MaterialTheme.typography.body1
+                            style = MaterialTheme.typography.body1,
+                            fontSize = 14.sp
                         )
                     }
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
-                        modifier = Modifier.padding(start = 30.dp)
+                        modifier = Modifier.align(Alignment.End).padding(start = screenWidth * 0.08f),
                     ) {
                         Text(
-                            "("
+                            "(", fontSize = 14.sp
                         )
                         if (index.percentage.toString() == "-") {
                             Image(
                                 painter = painterResource(id = index.changeIcon),
                                 contentDescription = null,
                                 modifier = Modifier
-                                    .size(16.dp)
-
+                                    .size(12.dp)
                             )
                         }
                         Text(
                             text = index.percentage.toString(),
-                            style = MaterialTheme.typography.body1
-
+                            style = MaterialTheme.typography.body1,
+                            fontSize = 14.sp
                             )
-                        Text(")")
+                        Text(")", fontSize = 14.sp)
                     }
                 }
             }

@@ -34,6 +34,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.capita.home.homeScreen.index.IndexView
+import com.example.capita.home.homeScreen.overview.OverView
 
 @Composable
 fun HomeScreen() {
@@ -122,7 +123,7 @@ fun OverviewScreen() {
 fun DisplayOverview(overview: List<Overview>) {
     LazyColumn {
         items(overview) { overview ->
-            com.example.capita.home.homeScreen.overview.CardView(overview)
+            OverView(overview)
         }
     }
 }

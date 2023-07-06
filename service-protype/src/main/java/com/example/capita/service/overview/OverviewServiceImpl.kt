@@ -37,28 +37,28 @@ class OverviewServiceImpl : OverviewService {
         )
     )
 
-    override fun overviewSearch(searchText: String): List<Overview>{
-        if (searchText.isBlank()) {
-            return emptyList()
-        }
-
-        val lowerCaseSearchText = searchText.lowercase(Locale.getDefault())
-
-        return overview.filter { overview ->
-            (
-                    overview.longName.contains(lowerCaseSearchText) ||
-                            overview.shortName.lowercase(Locale.getDefault())
-                                .contains(lowerCaseSearchText)
-//                            ||
-//                            instrument.symbol.lowercase(Locale.getDefault())
-//                                .contains(lowerCaseSearchText) ||
-//                            instrument.market.lowercase(Locale.getDefault())
-//                                .contains(lowerCaseSearchText) ||
-//                            instrument.assetClass.lowercase(Locale.getDefault())
+//    override fun overviewSearch(searchText: String): List<Overview>{
+//        if (searchText.isBlank()) {
+//            return emptyList()
+//        }
+//
+//        val lowerCaseSearchText = searchText.lowercase(Locale.getDefault())
+//
+//        return overview.filter { overview ->
+//            (
+//                    overview.longName.contains(lowerCaseSearchText) ||
+//                            overview.shortName.lowercase(Locale.getDefault())
 //                                .contains(lowerCaseSearchText)
-                    )
-        }
-    }
+////                            ||
+////                            instrument.symbol.lowercase(Locale.getDefault())
+////                                .contains(lowerCaseSearchText) ||
+////                            instrument.market.lowercase(Locale.getDefault())
+////                                .contains(lowerCaseSearchText) ||
+////                            instrument.assetClass.lowercase(Locale.getDefault())
+////                                .contains(lowerCaseSearchText)
+//                    )
+//        }
+//    }
     override fun listOverview(): List<Overview> {
         return overview
     }

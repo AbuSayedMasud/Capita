@@ -10,13 +10,17 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.material.MaterialTheme
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.example.capita.overview.Overview
 
 @Composable
-fun CardView(overview: Overview) {
+fun OverView(overview: Overview) {
+    val configuration = LocalConfiguration.current
+    val screenWidth = configuration.screenWidthDp.dp
+    val screenHeight = configuration.screenHeightDp.dp
 
     Card(
         modifier = Modifier.padding(16.dp, 8.dp),
@@ -61,12 +65,7 @@ fun CardView(overview: Overview) {
                     verticalArrangement = Arrangement.Center
                 ) {
                     // First Row - Value
-                    Text(
-                        text = overview.amount.toString(),
-                        style = MaterialTheme.typography.subtitle1,
-                        modifier = Modifier.padding(start = 30.dp),
-                        fontSize = 14.sp
-                    )
+
                 }
                 Column(
                     modifier = Modifier
@@ -74,10 +73,24 @@ fun CardView(overview: Overview) {
                         .align(Alignment.CenterHorizontally),
                     verticalArrangement = Arrangement.Center
                 ) {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier
+                            .align(Alignment.End)
+                            .padding(start = screenWidth * 0.08f)
+                    ) {
+                        Text(
+                            text = overview.amount.toString(),
+                            style = MaterialTheme.typography.subtitle1,
+                            fontSize = 14.sp
+                        )
+                    }
                     // Second Row - Closed Price and Change
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
-                        modifier = Modifier.padding(start = 30.dp)
+                        modifier = Modifier
+                            .align(Alignment.End)
+                            .padding(start = screenWidth * 0.08f)
                     ) {
                         Image(
                             painter = painterResource(id = overview.changeIcon),
@@ -93,7 +106,9 @@ fun CardView(overview: Overview) {
                     }
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
-                        modifier = Modifier.padding(start = 32.dp)
+                        modifier = Modifier
+                            .align(Alignment.End)
+                            .padding(start = screenWidth * 0.08f)
                     ) {
                         Text(
                             "(", fontSize = 14.sp

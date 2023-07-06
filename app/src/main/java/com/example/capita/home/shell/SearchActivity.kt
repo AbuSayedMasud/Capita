@@ -27,11 +27,11 @@ class SearchActivity : ComponentActivity() {
             CapitaTheme {
                 val service = InstrumentServiceImpl()
                 val indexSearch = IndexServiceImpl()
-                val overviewSearch = OverviewServiceImpl()
+//                val overviewSearch = OverviewServiceImpl()
                 var searchText by remember { mutableStateOf("") }
                 val instruments = remember { derivedStateOf { service.stockSearch(searchText) } }
                 val index = remember { derivedStateOf { indexSearch.indexSearch(searchText) } }
-                val overview = remember { derivedStateOf { overviewSearch.overviewSearch(searchText) } }
+//                val overview = remember { derivedStateOf { overviewSearch.overviewSearch(searchText) } }
 
                 Column {
                     MyAppBar(
@@ -53,11 +53,11 @@ class SearchActivity : ComponentActivity() {
                             com.example.capita.home.homeScreen.index.IndexView(index)
                         }
                     }
-                    LazyColumn {
-                        items(items = overview.value){ overview ->
-                            com.example.capita.home.homeScreen.overview.CardView(overview)
-                        }
-                    }
+//                    LazyColumn {
+//                        items(items = overview.value){ overview ->
+//                            com.example.capita.home.homeScreen.overview.CardView(overview)
+//                        }
+//                    }
                 }
             }
         }
