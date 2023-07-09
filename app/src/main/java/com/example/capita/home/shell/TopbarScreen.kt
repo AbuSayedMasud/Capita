@@ -17,6 +17,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.*
 import androidx.compose.ui.text.TextStyle
@@ -24,6 +25,7 @@ import androidx.compose.ui.text.font.FontWeight
 import com.example.capita.R
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.capita.home.actionActivity.actionActivity
 
 @Composable
 fun MyAppBar(
@@ -34,6 +36,7 @@ fun MyAppBar(
 ) {
     var searchText by remember { mutableStateOf("") } // Maintain the state of the search text
     var isSearching by remember { mutableStateOf(showSearchBar) } // Maintain the state of whether the user is searching or not
+    var isActionSearch by remember { mutableStateOf(showSearchBar) }
 
     val painter = painterResource(id = R.drawable.logo)
     val myCustomColor = Color(0xFF006A4E)
@@ -43,7 +46,7 @@ fun MyAppBar(
          When the text in the TextField changes, it updates the searchText and calls onSearch.
          */
         title = {
-            if (isSearching) {
+            if (isSearching || isActionSearch) {
                 TextField(
                     value = searchText,
                     onValueChange = { newText ->

@@ -28,6 +28,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".home.shell.SearchActivity" />
+        <activity android:name=".home.actionActivity.actionActivity" />
 
     </application>
 
