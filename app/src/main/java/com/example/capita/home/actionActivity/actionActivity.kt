@@ -1,5 +1,6 @@
 package com.example.capita.home.actionActivity
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -12,6 +13,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import com.example.capita.home.HomeActivity
+import com.example.capita.home.homeScreen.overview.DisplayOverview
 import com.example.capita.home.homeScreen.stocks.CardView
 import com.example.capita.home.shell.MyAppBar
 import com.example.capita.service.action.ActionServiceImpl
@@ -46,7 +49,11 @@ class actionActivity : ComponentActivity() {
 
                     LazyColumn {
                         items(items = actions) { action ->
-                            ActionView(action)
+                            ActionView(action = action) {
+                                val intent = Intent(this@actionActivity, HomeActivity::class.java)
+                                intent.putExtra("action_shortName", action.shortName)
+                                startActivity(intent)
+                            }
                         }
                     }
                 }

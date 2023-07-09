@@ -1,5 +1,6 @@
 package com.example.capita.home.homeScreen.overview
 
+import android.app.Activity
 import android.content.Intent
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -15,7 +16,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -31,12 +31,21 @@ import com.example.capita.service.overview.OverviewServiceImpl
 fun OverviewScreen() {
     val overviewService = OverviewServiceImpl()
     val context = LocalContext.current
-    val overviewDSE by remember { mutableStateOf(overviewService.overviewDSE) }
+
+    val actionShortName = (context as Activity).intent.getStringExtra("action_shortName")
+
+    val overviewData = when (actionShortName) {
+        "DSE" -> overviewService.overviewDSE
+        "CSE" -> overviewService.overviewCSE
+        else -> overviewService.overviewDSE
+    }
+
+    val overview by remember { mutableStateOf(overviewData) }
 
 
     Column {
         StatusView()
-        DisplayOverview(overviewDSE)
+        DisplayOverview(overview)
         TotalView()
 
         Box(

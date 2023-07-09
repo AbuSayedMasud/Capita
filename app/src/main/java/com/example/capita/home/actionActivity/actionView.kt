@@ -1,6 +1,7 @@
 package com.example.capita.home.actionActivity
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Card
 import androidx.compose.material.Text
@@ -20,13 +21,15 @@ import com.example.capita.index.Indices
 import com.example.service.protype.R
 
 @Composable
-fun ActionView(action: Action) {
+fun ActionView(action: Action, onClick: () -> Unit) {
     val configuration = LocalConfiguration.current
     val screenWidth = configuration.screenWidthDp.dp
     val screenHeight = configuration.screenHeightDp.dp
 
     Card(
-        modifier = Modifier.padding(16.dp, 8.dp),
+        modifier = Modifier
+            .padding(16.dp, 8.dp)
+            .clickable(onClick = onClick),
         elevation = 8.dp,
         backgroundColor = Color(0xFFFFFFFF),
         shape = MaterialTheme.shapes.medium
