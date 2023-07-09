@@ -60,7 +60,7 @@ fun OverviewScreen() {
                     context.startActivity(intent)
                 },
                 content = {
-                    val imagePainter = painterResource(R.drawable.pen)
+                    val imagePainter = painterResource(R.drawable.filter)
                     Icon(
                         painter = imagePainter,
                         contentDescription = "Custom Icon",

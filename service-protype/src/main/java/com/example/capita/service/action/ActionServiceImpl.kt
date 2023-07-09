@@ -11,12 +11,12 @@ class ActionServiceImpl : ActionService {
 
     val action = listOf(
         Action(
-            icon = R.drawable.logo1,
+            icon = R.drawable.dse,
             shortName = "DSE",
             longName = "Dhaka Stock Exchange Ltd."
         ),
         Action(
-            icon = R.drawable.logo1,
+            icon = R.drawable.dse,
             shortName = "CSE",
             longName = "Chittagong Stock Exchange Ltd."
         )

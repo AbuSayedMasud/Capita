@@ -8,7 +8,7 @@ class OverviewServiceImpl : OverviewService {
 
      val overviewDSE = listOf(
         Overview(
-            icon = R.drawable.logo1,
+            icon = R.drawable.dse,
             shortName = "DSEX",
             longName = "DSEX Index",
             amount = 6331.36305,
@@ -17,7 +17,7 @@ class OverviewServiceImpl : OverviewService {
             changeIcon = R.drawable.minus
         ),
         Overview(
-            icon = R.drawable.logo1,
+            icon = R.drawable.dse,
             shortName = "DSES",
             longName = "DSES Index",
             amount = 1373.82707,
@@ -26,7 +26,7 @@ class OverviewServiceImpl : OverviewService {
             changeIcon = R.drawable.minus
         ),
         Overview(
-            icon = R.drawable.logo1,
+            icon = R.drawable.dse,
             shortName = "DS30",
             longName = "DS30 Index",
             amount = 2191.51864,
@@ -38,7 +38,7 @@ class OverviewServiceImpl : OverviewService {
 
     val overviewCSE = listOf(
         Overview(
-            icon = R.drawable.logo1,
+            icon = R.drawable.cse,
             shortName = "CSE50",
             longName = "CSE50 Index",
             amount = 6331.36305,
@@ -47,7 +47,7 @@ class OverviewServiceImpl : OverviewService {
             changeIcon = R.drawable.minus
         ),
         Overview(
-            icon = R.drawable.logo1,
+            icon = R.drawable.cse,
             shortName = "CSE30",
             longName = "CSE30 Index",
             amount = 1373.82707,
@@ -56,7 +56,7 @@ class OverviewServiceImpl : OverviewService {
             changeIcon = R.drawable.minus
         ),
         Overview(
-            icon = R.drawable.logo1,
+            icon = R.drawable.cse,
             shortName = "CSCX",
             longName = "CSCX Index",
             amount = 2191.51864,

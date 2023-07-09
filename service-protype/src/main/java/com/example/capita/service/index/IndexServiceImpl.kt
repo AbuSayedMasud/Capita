@@ -9,7 +9,7 @@ class IndexServiceImpl : IndexService {
 
     val index = listOf(
         Indices(
-            icon = R.drawable.logo1,
+            icon = R.drawable.dse,
             shortName = "DSEX",
             longName = "DSEX Index",
             amount = 6331.36305,
@@ -18,7 +18,7 @@ class IndexServiceImpl : IndexService {
             changeIcon = R.drawable.minus
         ),
         Indices(
-            icon = R.drawable.logo1,
+            icon = R.drawable.dse,
             shortName = "DSES",
             longName = "DSES Index",
             amount = 1373.82707,
@@ -27,7 +27,7 @@ class IndexServiceImpl : IndexService {
             changeIcon = R.drawable.minus
         ),
         Indices(
-            icon = R.drawable.logo1,
+            icon = R.drawable.dse,
             shortName = "DS30",
             longName = "DS30 Index",
             amount = 2191.51864,
@@ -36,7 +36,7 @@ class IndexServiceImpl : IndexService {
             changeIcon = R.drawable.minus
         ),
         Indices(
-            icon = R.drawable.logo1,
+            icon = R.drawable.dse,
             shortName = "CDSET",
             longName = "CDSET Index",
             amount = 1212.5,
