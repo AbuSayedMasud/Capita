@@ -42,7 +42,6 @@ fun OverviewScreen() {
 
     val overview by remember { mutableStateOf(overviewData) }
 
-
     Column {
         StatusView()
         DisplayOverview(overview)
@@ -50,9 +49,8 @@ fun OverviewScreen() {
 
         Box(
             modifier = Modifier.fillMaxSize(),
-            contentAlignment = Alignment.BottomEnd
+            contentAlignment = Alignment.BottomEnd,
         ) {
-
             // Add padding to create some spacing around the button
             FloatingActionButton(
                 onClick = {
@@ -64,7 +62,7 @@ fun OverviewScreen() {
                     Icon(
                         painter = imagePainter,
                         contentDescription = "Custom Icon",
-                        modifier = Modifier.size(24.dp)
+                        modifier = Modifier.size(24.dp),
                     )
                 },
                 modifier = Modifier
@@ -74,11 +72,10 @@ fun OverviewScreen() {
 
                 // Set the background color of the button to white
                 backgroundColor = Color.White,
-                contentColor = Color.Black
+                contentColor = Color.Black,
             )
         }
     }
-
 }
 
 @Composable

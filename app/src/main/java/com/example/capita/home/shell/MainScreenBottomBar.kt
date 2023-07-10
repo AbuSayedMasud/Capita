@@ -21,14 +21,16 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.example.capita.service.news.NewsServiceImpl
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter", "SuspiciousIndentation")
 @Composable
 fun MainScreenBottomBar() {
     val navController= rememberNavController()
+    val newsService = NewsServiceImpl()
 //
     Scaffold(bottomBar = { bottomBar(navController = navController) }) {
-        BottomNavGraph(navController = navController)
+        BottomNavGraph(navController = navController, newsService = newsService)
     }
 }
 

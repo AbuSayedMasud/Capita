@@ -8,16 +8,17 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.capita.home.bottomScreen.*
+import com.example.capita.news.NewsService
 
 
 @Composable
-fun BottomNavGraph(navController: NavHostController) {
+fun BottomNavGraph(navController: NavHostController, newsService: NewsService) {
     NavHost(navController = navController, startDestination = BottomBarScreen.Home.route) {
         composable(BottomBarScreen.Home.route) {
             HomeScreen()
         }
         composable(BottomBarScreen.News.route) {
-            NewsScreen()
+            NewsScreen(newsService = newsService)
         }
         composable(BottomBarScreen.WatchList.route) {
             BookmarkScreen()

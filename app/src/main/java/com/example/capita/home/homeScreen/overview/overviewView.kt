@@ -1,19 +1,19 @@
-package com.example.capita.home.homeScreen.overview
+package com.example.capita.home.homeScreen.overview // ktlint-disable filename
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.* // ktlint-disable no-wildcard-imports
 import androidx.compose.material.Card
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
-import androidx.compose.material.MaterialTheme
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.capita.overview.Overview
 
@@ -26,37 +26,37 @@ fun OverView(overview: Overview) {
     // Define sizes based on screen size
     val imageSize = (screenWidth * 0.09f).coerceAtMost(52.dp)
     val textColumnWeight =
-        if (screenWidth > 600.dp) 4f else 1f  // Increase text space on large screens
+        if (screenWidth > 600.dp) 4f else 1f // Increase text space on large screens
     val valueColumnWeight =
-        if (screenWidth > 600.dp) 2f else 1f  // Increase value space on large screens
+        if (screenWidth > 600.dp) 2f else 1f // Increase value space on large screens
     val textSize = if (screenWidth > 600.dp) 14.sp else 12.sp
 
     Card(
         modifier = Modifier.padding(16.dp, 8.dp),
         elevation = 8.dp,
         backgroundColor = Color(0xFFFFFFFF),
-        shape = MaterialTheme.shapes.medium
+        shape = MaterialTheme.shapes.medium,
     ) {
         Row(
             modifier = Modifier.padding(8.dp),
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             // First Column - Icon and Full Name
             Image(
                 painter = painterResource(id = overview.icon),
                 contentDescription = null,
                 modifier = Modifier
-                    .size(imageSize)
+                    .size(imageSize),
             )
 
-            Spacer(modifier = Modifier.width(8.dp))  // Space between Image and Texts
+            Spacer(modifier = Modifier.width(8.dp)) // Space between Image and Texts
 
             // Second Column - Texts
             Column(modifier = Modifier.weight(textColumnWeight)) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(
                         text = overview.shortName,
-                        style = MaterialTheme.typography.body1.copy(fontWeight = FontWeight.Bold)
+                        style = MaterialTheme.typography.body1.copy(fontWeight = FontWeight.Bold),
                     )
                 }
 
@@ -64,40 +64,39 @@ fun OverView(overview: Overview) {
 
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.padding()
+                    modifier = Modifier.padding(),
                 ) {
                     Text(
                         text = overview.longName,
-                        style = MaterialTheme.typography.body2
+                        style = MaterialTheme.typography.body2,
                     )
                 }
-
             }
 
             // Third Column - Value, Closed Price, and Change
             Column(
                 modifier = Modifier
                     .weight(valueColumnWeight)
-                    .offset(x = -screenWidth * 0.01f)  // move text to the left by 5% of screen width
+                    .offset(x = -screenWidth * 0.01f), // move text to the left by 5% of screen width
             ) {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier
-                        .align(Alignment.End)
+                        .align(Alignment.End),
 //                        .padding(start = screenWidth * 0.1f)
                 ) {
                     Text(
                         text = overview.amount.toString(),
                         style = MaterialTheme.typography.subtitle1,
                         fontSize = textSize,
-                        textAlign = TextAlign.End
+                        textAlign = TextAlign.End,
                     )
                 }
 
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier
-                        .align(Alignment.End)
+                        .align(Alignment.End),
 //                        .padding(start = screenWidth * 0.08f)
                 ) {
                     Image(
@@ -105,19 +104,19 @@ fun OverView(overview: Overview) {
                         contentDescription = null,
                         modifier = Modifier
                             .size(10.dp)
-                            .padding(end = 4.dp)
+                            .padding(end = 4.dp),
                     )
                     Text(
                         text = overview.increase.toString(),
                         style = MaterialTheme.typography.body1,
-                        fontSize = textSize
+                        fontSize = textSize,
                     )
                 }
 
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier
-                        .align(Alignment.End)
+                        .align(Alignment.End),
 //                        .padding(start = screenWidth * 0.08f)
                 ) {
                     Text("(", fontSize = textSize)
@@ -127,13 +126,13 @@ fun OverView(overview: Overview) {
                             contentDescription = null,
                             modifier = Modifier
                                 .size(12.dp)
-                                .padding(end = 4.dp)
+                                .padding(end = 4.dp),
                         )
                     }
                     Text(
                         text = overview.percentage.toString(),
                         style = MaterialTheme.typography.body1,
-                        fontSize = textSize
+                        fontSize = textSize,
                     )
                     Text(")", fontSize = textSize)
                 }
@@ -142,10 +141,9 @@ fun OverView(overview: Overview) {
     }
 }
 
-
-//@Preview
-//@Composable
-//fun CardViewPreview() {
+// @Preview
+// @Composable
+// fun CardViewPreview() {
 //    val sampleIndex = Overview(
 //        icon = R.drawable.logo1,
 //        longName = "DSEX Index",
@@ -159,4 +157,4 @@ fun OverView(overview: Overview) {
 //    MaterialTheme {
 //        CardView(overview = sampleIndex)
 //    }
-//}
+// }

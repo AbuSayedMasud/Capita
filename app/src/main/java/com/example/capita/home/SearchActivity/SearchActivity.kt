@@ -1,9 +1,8 @@
-package com.example.capita.home.shell
+package com.example.capita.home.SearchActivity // ktlint-disable package-name
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.example.capita.home.ui.theme.CapitaTheme
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -14,10 +13,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import com.example.capita.home.homeScreen.stocks.CardView
 import com.example.capita.home.shell.MyAppBar
-import com.example.capita.service.instrument.InstrumentServiceImpl
+import com.example.capita.home.ui.theme.CapitaTheme
 import com.example.capita.service.index.IndexServiceImpl
-import com.example.capita.service.overview.OverviewServiceImpl
-
+import com.example.capita.service.instrument.InstrumentServiceImpl
 
 class SearchActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,7 +38,7 @@ class SearchActivity : ComponentActivity() {
                         onSearch = { newSearchText ->
                             searchText = newSearchText
                         },
-                        showSearchBar = true
+                        showSearchBar = true,
                     )
 
                     LazyColumn {
@@ -49,7 +47,7 @@ class SearchActivity : ComponentActivity() {
                         }
                     }
                     LazyColumn {
-                        items(items = index.value){ index ->
+                        items(items = index.value) { index ->
                             com.example.capita.home.homeScreen.index.IndexView(index)
                         }
                     }
@@ -63,8 +61,3 @@ class SearchActivity : ComponentActivity() {
         }
     }
 }
-
-
-
-
-

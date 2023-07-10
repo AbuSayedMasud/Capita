@@ -17,7 +17,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.offset
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.*
 import androidx.compose.ui.text.TextStyle
@@ -25,7 +24,7 @@ import androidx.compose.ui.text.font.FontWeight
 import com.example.capita.R
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.capita.home.actionActivity.actionActivity
+import com.example.capita.home.SearchActivity.SearchActivity
 
 @Composable
 fun MyAppBar(
