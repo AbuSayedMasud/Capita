@@ -1,7 +1,7 @@
-package com.example.capita.service.overview
+package com.example.capita.service.home.overview
 
-import com.example.capita.overview.Overview
-import com.example.capita.overview.OverviewService
+import com.example.capita.home.overview.Overview
+import com.example.capita.home.overview.OverviewService
 import com.example.service.protype.R
 
 class OverviewServiceImpl : OverviewService {

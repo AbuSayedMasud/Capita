@@ -1,39 +1,37 @@
-package com.example.capita.service.action
+package com.example.capita.service.home.filter
 
-import com.example.capita.action.Action
-import com.example.capita.action.ActionService
-import com.example.capita.index.IndexService
-import com.example.capita.index.Indices
+import com.example.capita.home.filter.Filter
+import com.example.capita.home.filter.FilterService
 import com.example.service.protype.R
 import java.util.Locale
 
-class ActionServiceImpl : ActionService {
+class FilterServiceImpl : FilterService {
 
-    val action = listOf(
-        Action(
+    val filter = listOf(
+        Filter(
             icon = R.drawable.dse,
             shortName = "DSE",
-            longName = "Dhaka Stock Exchange Ltd."
+            longName = "Dhaka Stock Exchange Ltd.",
         ),
-        Action(
+        Filter(
             icon = R.drawable.dse,
             shortName = "CSE",
-            longName = "Chittagong Stock Exchange Ltd."
-        )
+            longName = "Chittagong Stock Exchange Ltd.",
+        ),
     )
 
-    override fun actionSearch(searchText: String): List<Action>{
+    override fun filterSearch(searchText: String): List<Filter> {
         if (searchText.isBlank()) {
             return emptyList()
         }
 
         val lowerCaseSearchText = searchText.lowercase(Locale.getDefault())
 
-        return action.filter { action ->
+        return filter.filter { action ->
             (
-                    action.longName.contains(lowerCaseSearchText) ||
-                            action.shortName.lowercase(Locale.getDefault())
-                                .contains(lowerCaseSearchText)
+                action.longName.contains(lowerCaseSearchText) ||
+                    action.shortName.lowercase(Locale.getDefault())
+                        .contains(lowerCaseSearchText)
 //                            ||
 //                            instrument.symbol.lowercase(Locale.getDefault())
 //                                .contains(lowerCaseSearchText) ||
@@ -41,10 +39,10 @@ class ActionServiceImpl : ActionService {
 //                                .contains(lowerCaseSearchText) ||
 //                            instrument.assetClass.lowercase(Locale.getDefault())
 //                                .contains(lowerCaseSearchText)
-                    )
+                )
         }
     }
-    override fun listAction(): List<Action> {
-        return action
+    override fun listFilter(): List<Filter> {
+        return filter
     }
 }

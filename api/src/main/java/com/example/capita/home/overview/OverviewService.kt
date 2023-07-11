@@ -1,4 +1,4 @@
-package com.example.capita.overview
+package com.example.capita.home.overview
 
 interface OverviewService {
     fun listOverview(): List<Overview>

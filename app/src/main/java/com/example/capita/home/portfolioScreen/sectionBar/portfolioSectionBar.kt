@@ -1,4 +1,4 @@
-package com.example.capita.home.homeScreen.sectionBar
+package com.example.capita.home.portfolioScreen.sectionBar // ktlint-disable filename
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -21,22 +21,20 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import kotlin.text.Typography.section
 
 @Composable
-fun scrollingSectionBar(selectedSection: String, onSectionSelected: (String) -> Unit) {
-    var selectedSection by remember { mutableStateOf("Overview") }
+fun portfolioSectionBar(selectedSection: String, onSectionSelected: (String) -> Unit) {
+    var portfolioSelectedSection by remember { mutableStateOf("Instrument") }
 
     val normalColor = Color.Gray
     val selectedColor = Color.Black
 
     val sections = listOf(
-        "Overview",
-        "Indices",
-        "Stocks",
+        "Instrument",
+        "Balance",
+        "Receivable",
 //        "Currency",
 //        "Crypto",
 //        "Future Indices"
@@ -51,7 +49,7 @@ fun scrollingSectionBar(selectedSection: String, onSectionSelected: (String) -> 
             .background(lighterAppBarColor)
             .horizontalScroll(rememberScrollState()),
         horizontalArrangement = Arrangement.SpaceEvenly,
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         for (section in sections) {
             Box(
@@ -63,24 +61,24 @@ fun scrollingSectionBar(selectedSection: String, onSectionSelected: (String) -> 
                         },
                         indication = null,
                         onClick = {
-                            selectedSection = section
+                            portfolioSelectedSection = section
                             onSectionSelected(section)
-                        }
-                    )
+                        },
+                    ),
             ) {
                 Text(
                     text = section,
-                    color = if (section == selectedSection) selectedColor else normalColor,
-                    fontSize = if (section == selectedSection) 14.sp else 12.sp, // Enlarge the text size when selected
-                    modifier = if (section == selectedSection) Modifier.scale(1.1f) else Modifier // Scale effect when selected
+                    color = if (section == portfolioSelectedSection) selectedColor else normalColor,
+                    fontSize = if (section == portfolioSelectedSection) 14.sp else 12.sp, // Enlarge the text size when selected
+                    modifier = if (section == portfolioSelectedSection) Modifier.scale(1.1f) else Modifier, // Scale effect when selected
                 )
             }
         }
     }
 }
 
-//@Preview
-//@Composable
-//fun PreviewScrollingSectionBar() {
+// @Preview
+// @Composable
+// fun PreviewScrollingSectionBar() {
 //    scrollingSectionBar()
-//}
+// }

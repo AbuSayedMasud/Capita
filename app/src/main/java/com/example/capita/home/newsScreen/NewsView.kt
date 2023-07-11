@@ -1,4 +1,4 @@
-package com.example.capita.home.news
+package com.example.capita.home.newsScreen
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
@@ -34,7 +34,7 @@ import androidx.compose.ui.unit.sp
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun ExpandableCard(
+fun NewsView(
     icon: Painter,
     firstName: String,
     middleName: String,
@@ -67,7 +67,9 @@ fun ExpandableCard(
 //            verticalAlignment = Alignment.Top,
         ) {
             Box(
-                modifier = Modifier.size(imageSize),
+                modifier = Modifier
+                    .size(imageSize)
+                    .padding(top = 16.dp),
                 contentAlignment = Alignment.Center,
             ) {
                 Image(

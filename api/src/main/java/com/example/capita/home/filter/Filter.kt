@@ -1,6 +1,6 @@
-package com.example.capita.action
+package com.example.capita.home.filter
 
-class Action(
+class Filter(
     val icon: Int,
     val shortName: String,
     val longName: String

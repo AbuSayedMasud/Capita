@@ -6,8 +6,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import com.example.capita.index.Indices
-import com.example.capita.service.index.IndexServiceImpl
+import com.example.capita.home.index.Indices
+import com.example.capita.service.home.index.IndexServiceImpl
 
 @Composable
 fun IndexScreen() {

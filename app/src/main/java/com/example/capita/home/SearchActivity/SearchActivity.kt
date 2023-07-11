@@ -11,11 +11,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import com.example.capita.home.homeScreen.stocks.CardView
+import com.example.capita.home.homeScreen.stocks.StockView
 import com.example.capita.home.shell.MyAppBar
 import com.example.capita.home.ui.theme.CapitaTheme
-import com.example.capita.service.index.IndexServiceImpl
-import com.example.capita.service.instrument.InstrumentServiceImpl
+import com.example.capita.service.home.index.IndexServiceImpl
+import com.example.capita.service.home.stock.StockServiceImpl
 
 class SearchActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,7 +23,7 @@ class SearchActivity : ComponentActivity() {
 
         setContent {
             CapitaTheme {
-                val service = InstrumentServiceImpl()
+                val service = StockServiceImpl()
                 val indexSearch = IndexServiceImpl()
 //                val overviewSearch = OverviewServiceImpl()
                 var searchText by remember { mutableStateOf("") }
@@ -43,7 +43,7 @@ class SearchActivity : ComponentActivity() {
 
                     LazyColumn {
                         items(items = instruments.value) { instrument ->
-                            CardView(instrument)
+                            StockView(instrument)
                         }
                     }
                     LazyColumn {

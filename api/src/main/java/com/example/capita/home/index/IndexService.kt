@@ -1,4 +1,4 @@
-package com.example.capita.index
+package com.example.capita.home.index
 
 
 interface IndexService {

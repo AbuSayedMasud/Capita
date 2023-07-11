@@ -13,10 +13,10 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.example.capita.action.Action
+import com.example.capita.home.filter.Filter
 
 @Composable
-fun ActionView(action: Action, onClick: () -> Unit) {
+fun ActionView(action: Filter, onClick: () -> Unit) {
     val configuration = LocalConfiguration.current
     val screenWidth = configuration.screenWidthDp.dp
     val screenHeight = configuration.screenHeightDp.dp

@@ -24,8 +24,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.capita.R
 import com.example.capita.home.actionActivity.actionActivity
-import com.example.capita.overview.Overview
-import com.example.capita.service.overview.OverviewServiceImpl
+import com.example.capita.home.overview.Overview
+import com.example.capita.service.home.overview.OverviewServiceImpl
 
 @Composable
 fun OverviewScreen() {

@@ -15,7 +15,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.capita.overview.Overview
+import com.example.capita.home.overview.Overview
 
 @Composable
 fun OverView(overview: Overview) {
@@ -72,8 +72,6 @@ fun OverView(overview: Overview) {
                     )
                 }
             }
-
-            // Third Column - Value, Closed Price, and Change
             Column(
                 modifier = Modifier
                     .weight(valueColumnWeight)

@@ -1,7 +1,7 @@
-package com.example.capita.service.index
+package com.example.capita.service.home.index
 
-import com.example.capita.index.IndexService
-import com.example.capita.index.Indices
+import com.example.capita.home.index.IndexService
+import com.example.capita.home.index.Indices
 import com.example.service.protype.R
 import java.util.Locale
 
