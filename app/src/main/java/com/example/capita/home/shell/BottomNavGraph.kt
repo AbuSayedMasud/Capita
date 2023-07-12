@@ -1,15 +1,11 @@
 package com.example.capita.home.shell
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.capita.home.bottomScreen.*
+import com.example.capita.home.bottomScreen.* // ktlint-disable no-wildcard-imports
 import com.example.capita.news.NewsService
-
 
 @Composable
 fun BottomNavGraph(navController: NavHostController, newsService: NewsService) {
