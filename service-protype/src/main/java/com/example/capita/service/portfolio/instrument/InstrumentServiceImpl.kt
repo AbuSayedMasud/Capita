@@ -1,11 +1,11 @@
 package com.example.capita.service.portfolio.instrument
 
 import com.example.capita.portfolio.instrument.Instrument
-import com.example.capita.portfolio.instrument.InstrumentService
+import com.example.capita.portfolio.instrument.BalanceService
 import com.example.service.protype.R
 import java.util.Locale
 
-class InstrumentServiceImpl : InstrumentService {
+class InstrumentServiceImpl : BalanceService {
     val instruments = listOf(
         Instrument(
             icon = R.drawable.aci,

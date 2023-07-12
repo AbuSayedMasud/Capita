@@ -25,7 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun portfolioSectionBar(selectedSection: String, onSectionSelected: (String) -> Unit) {
+fun portfolioSectionBar(portfolioSelectedSection: String, onSectionSelected: (String) -> Unit) {
     var portfolioSelectedSection by remember { mutableStateOf("Instrument") }
 
     val normalColor = Color.Gray
