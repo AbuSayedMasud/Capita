@@ -13,9 +13,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
+import androidx.compose.ui.Modifier
 import com.example.capita.home.homeScreen.index.IndexScreen
 import com.example.capita.home.homeScreen.overview.OverviewScreen
-import com.example.capita.home.homeScreen.sectionBar.homeSectionBar
+import com.example.capita.home.homeScreen.sectionBar.HomeSectionBar
 import com.example.capita.home.homeScreen.stocks.StockScreen
 import com.google.accompanist.pager.*
 
@@ -41,8 +42,8 @@ fun HomeScreen() {
         pagerState.animateScrollToPage(homeSelectedSection)
     }
 
-    Column {
-        homeSectionBar(
+    Column(modifier = Modifier.fillMaxSize()) {
+        HomeSectionBar(
             sections = sections,
             homeSelectedSection = homeSelectedSection,
             onSectionSelected = { section ->
@@ -53,11 +54,14 @@ fun HomeScreen() {
         HorizontalPager(
             pageCount = sections.size,
             state = pagerState,
+            modifier = Modifier.fillMaxSize(),
         ) { page ->
-            when (sections[page]) {
-                "Overview" -> OverviewScreen()
-                "Indices" -> IndexScreen()
-                "Stocks" -> StockScreen()
+            Box(Modifier.fillMaxSize()) {
+                when (sections[page]) {
+                    "Overview" -> OverviewScreen()
+                    "Indices" -> IndexScreen()
+                    "Stocks" -> StockScreen()
+                }
             }
         }
     }

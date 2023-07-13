@@ -9,7 +9,7 @@ class FilterServiceImpl : FilterService {
 
     val filter = listOf(
         Filter(
-            icon = R.drawable.cse,
+            icon = R.drawable.dse,
             shortName = "DSE",
             longName = "Dhaka Stock Exchange Ltd.",
         ),

@@ -6,8 +6,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import com.example.capita.service.home.stock.StockServiceImpl
 import com.example.capita.home.stock.Stock
+import com.example.capita.service.home.stock.StockServiceImpl
 
 @Composable
 fun StockScreen() {

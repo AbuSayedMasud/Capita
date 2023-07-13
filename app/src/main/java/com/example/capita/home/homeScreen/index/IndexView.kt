@@ -13,17 +13,14 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.capita.home.index.Indices
-import com.example.service.protype.R
 
 @Composable
 fun IndexView(index: Indices) {
     val configuration = LocalConfiguration.current
     val screenWidth = configuration.screenWidthDp.dp
-    val screenHeight = configuration.screenHeightDp.dp
 
     // Define sizes based on screen size
     val imageSize = (screenWidth * 0.09f).coerceAtMost(52.dp)
@@ -92,7 +89,6 @@ fun IndexView(index: Indices) {
                         textAlign = TextAlign.End,
                     )
                 }
-
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier
@@ -112,7 +108,6 @@ fun IndexView(index: Indices) {
                         fontSize = textSize,
                     )
                 }
-
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier
@@ -141,20 +136,20 @@ fun IndexView(index: Indices) {
     }
 }
 
-@Preview
-@Composable
-fun CardViewPreview() {
-    val sampleIndex = Indices(
-        icon = R.drawable.logo1,
-        longName = "DSEX Index",
-        shortName = "DSEX",
-        amount = 6331.36305,
-        increase = 11.93465,
-        percentage = 0.18815,
-        changeIcon = R.drawable.minus,
-    )
-
-    MaterialTheme {
-        IndexView(index = sampleIndex)
-    }
-}
+// @Preview
+// @Composable
+// fun CardViewPreview() {
+//    val sampleIndex = Indices(
+//        icon = R.drawable.logo1,
+//        longName = "DSEX Index",
+//        shortName = "DSEX",
+//        amount = 6331.36305,
+//        increase = 11.93465,
+//        percentage = 0.18815,
+//        changeIcon = R.drawable.minus,
+//    )
+//
+//    MaterialTheme {
+//        IndexView(index = sampleIndex)
+//    }
+// }

@@ -21,7 +21,6 @@ import com.example.capita.home.overview.Overview
 fun OverView(overview: Overview) {
     val configuration = LocalConfiguration.current
     val screenWidth = configuration.screenWidthDp.dp
-    val screenHeight = configuration.screenHeightDp.dp
 
     // Define sizes based on screen size
     val imageSize = (screenWidth * 0.09f).coerceAtMost(52.dp)
@@ -90,7 +89,6 @@ fun OverView(overview: Overview) {
                         textAlign = TextAlign.End,
                     )
                 }
-
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier
@@ -110,7 +108,6 @@ fun OverView(overview: Overview) {
                         fontSize = textSize,
                     )
                 }
-
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier

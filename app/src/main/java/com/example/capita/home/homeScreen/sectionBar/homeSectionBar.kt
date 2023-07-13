@@ -16,13 +16,11 @@ import com.google.accompanist.pager.*
 
 @SuppressLint("RememberReturnType")
 @Composable
-fun homeSectionBar(
+fun HomeSectionBar(
     sections: List<String>,
     homeSelectedSection: Int,
     onSectionSelected: (Int) -> Unit,
 ) {
-    val normalColor = Color.Gray
-    val selectedColor = Color.Black
     val lighterAppBarColor = Color(0xFFD1DED0)
 
     Surface(
@@ -36,7 +34,6 @@ fun homeSectionBar(
                 .background(lighterAppBarColor),
             selectedTabIndex = homeSelectedSection,
             backgroundColor = lighterAppBarColor,
-//        edgePadding = 0.dp,
         ) {
             sections.forEachIndexed { index, section ->
                 Tab(
@@ -48,16 +45,8 @@ fun homeSectionBar(
                     },
                     selected = homeSelectedSection == index,
                     onClick = { onSectionSelected(index) },
-//                    selectedContentColor = selectedColor,
-//                    unselectedContentColor = normalColor,
                 )
             }
         }
     }
 }
-
-// @Preview
-// @Composable
-// fun PreviewScrollingSectionBar() {
-//    scrollingSectionBar()
-// }
