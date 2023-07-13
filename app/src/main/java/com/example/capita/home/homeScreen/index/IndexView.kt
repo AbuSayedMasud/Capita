@@ -12,6 +12,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -24,98 +25,116 @@ fun IndexView(index: Indices) {
     val screenWidth = configuration.screenWidthDp.dp
     val screenHeight = configuration.screenHeightDp.dp
 
+    // Define sizes based on screen size
+    val imageSize = (screenWidth * 0.09f).coerceAtMost(52.dp)
+    val textColumnWeight =
+        if (screenWidth > 600.dp) 4f else 1f // Increase text space on large screens
+    val valueColumnWeight =
+        if (screenWidth > 600.dp) 2f else 1f // Increase value space on large screens
+    val textSize = if (screenWidth > 600.dp) 14.sp else 12.sp
+
     Card(
         modifier = Modifier.padding(16.dp, 8.dp),
-        elevation = 8.dp,
+        elevation = 0.dp,
         backgroundColor = Color(0xFFFFFFFF),
         shape = MaterialTheme.shapes.medium,
     ) {
-        Row(modifier = Modifier.padding(8.dp)) {
-            // First Column
-            Column(modifier = Modifier.weight(4f)) {
-                Row(modifier = Modifier.fillMaxWidth()) {
-                    // First Row - Icon and Full Name
-                    Image(
-                        painter = painterResource(id = index.icon),
-                        contentDescription = null,
-                        modifier = Modifier.size(32.dp),
-                    )
+        Row(
+            modifier = Modifier.padding(8.dp),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            // First Column - Icon and Full Name
+            Image(
+                painter = painterResource(id = index.icon),
+                contentDescription = null,
+                modifier = Modifier
+                    .size(imageSize),
+            )
+
+            Spacer(modifier = Modifier.width(8.dp)) // Space between Image and Texts
+
+            // Second Column - Texts
+            Column(modifier = Modifier.weight(textColumnWeight)) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(
                         text = index.shortName,
-                        modifier = Modifier.padding(start = 8.dp, top = 4.dp),
                         style = MaterialTheme.typography.body1.copy(fontWeight = FontWeight.Bold),
                     )
                 }
+
+                Spacer(modifier = Modifier.height(4.dp))
+
                 Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(start = 41.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.padding(),
                 ) {
-                    // Second Row - Short Name, Equity, Market
                     Text(
                         text = index.longName,
                         style = MaterialTheme.typography.body2,
                     )
                 }
             }
-            // Second Column
-            Column(modifier = Modifier.weight(2f)) {
-                Column(
+            Column(
+                modifier = Modifier
+                    .weight(valueColumnWeight)
+                    .offset(x = -screenWidth * 0.01f), // move text to the left by 5% of screen width
+            ) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier
-                        .fillMaxHeight()
-                        .align(Alignment.CenterHorizontally),
-                    verticalArrangement = Arrangement.Center,
+                        .align(Alignment.End),
+//                        .padding(start = screenWidth * 0.1f)
                 ) {
-                    // Second Row - Closed Price and Change
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        modifier = Modifier.align(Alignment.End).padding(start = screenWidth * 0.08f),
-                    ) {
-                        Text(
-                            text = index.amount.toString(),
-                            style = MaterialTheme.typography.subtitle1,
-                            fontSize = 14.sp,
-                        )
-                    }
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        modifier = Modifier.align(Alignment.End).padding(start = screenWidth * 0.08f),
-                    ) {
+                    Text(
+                        text = index.amount.toString(),
+                        style = MaterialTheme.typography.subtitle1,
+                        fontSize = textSize,
+                        textAlign = TextAlign.End,
+                    )
+                }
+
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier
+                        .align(Alignment.End),
+//                        .padding(start = screenWidth * 0.08f)
+                ) {
+                    Image(
+                        painter = painterResource(id = index.changeIcon),
+                        contentDescription = null,
+                        modifier = Modifier
+                            .size(10.dp)
+                            .padding(end = 4.dp),
+                    )
+                    Text(
+                        text = index.increase.toString(),
+                        style = MaterialTheme.typography.body1,
+                        fontSize = textSize,
+                    )
+                }
+
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier
+                        .align(Alignment.End),
+//                        .padding(start = screenWidth * 0.08f)
+                ) {
+                    Text("(", fontSize = textSize)
+                    if (index.percentage.toString() == "-") {
                         Image(
                             painter = painterResource(id = index.changeIcon),
                             contentDescription = null,
                             modifier = Modifier
-                                .size(10.dp),
-                        )
-                        Text(
-                            text = index.increase.toString(),
-                            style = MaterialTheme.typography.body1,
-                            fontSize = 14.sp,
+                                .size(12.dp)
+                                .padding(end = 4.dp),
                         )
                     }
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        modifier = Modifier.align(Alignment.End).padding(start = screenWidth * 0.08f),
-                    ) {
-                        Text(
-                            "(",
-                            fontSize = 14.sp,
-                        )
-                        if (index.percentage.toString() == "-") {
-                            Image(
-                                painter = painterResource(id = index.changeIcon),
-                                contentDescription = null,
-                                modifier = Modifier
-                                    .size(12.dp),
-                            )
-                        }
-                        Text(
-                            text = index.percentage.toString(),
-                            style = MaterialTheme.typography.body1,
-                            fontSize = 14.sp,
-                        )
-                        Text(")", fontSize = 14.sp)
-                    }
+                    Text(
+                        text = index.percentage.toString(),
+                        style = MaterialTheme.typography.body1,
+                        fontSize = textSize,
+                    )
+                    Text(")", fontSize = textSize)
                 }
             }
         }

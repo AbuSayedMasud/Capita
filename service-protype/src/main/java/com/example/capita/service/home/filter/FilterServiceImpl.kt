@@ -9,12 +9,12 @@ class FilterServiceImpl : FilterService {
 
     val filter = listOf(
         Filter(
-            icon = R.drawable.dse,
+            icon = R.drawable.cse,
             shortName = "DSE",
             longName = "Dhaka Stock Exchange Ltd.",
         ),
         Filter(
-            icon = R.drawable.dse,
+            icon = R.drawable.cse,
             shortName = "CSE",
             longName = "Chittagong Stock Exchange Ltd.",
         ),

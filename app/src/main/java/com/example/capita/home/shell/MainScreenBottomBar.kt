@@ -1,6 +1,5 @@
 package com.example.capita.home.shell
 
-
 import android.annotation.SuppressLint
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.RowScope
@@ -9,10 +8,11 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavDestination
@@ -26,7 +26,7 @@ import com.example.capita.service.news.NewsServiceImpl
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter", "SuspiciousIndentation")
 @Composable
 fun MainScreenBottomBar() {
-    val navController= rememberNavController()
+    val navController = rememberNavController()
     val newsService = NewsServiceImpl()
 //
     Scaffold(bottomBar = { bottomBar(navController = navController) }) {
@@ -45,12 +45,12 @@ fun bottomBar(navController: NavHostController) {
     )
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
-    BottomNavigation (backgroundColor = Color(0xFF006A4E),contentColor = Color.White ){
+    BottomNavigation(backgroundColor = Color(0xFF006A4E), contentColor = Color.White) {
         screens.forEach { screen ->
             AddItem(
                 screen = screen,
-                curentDestination = currentDestination,
-                navController = navController
+                currentDestination = currentDestination,
+                navController = navController,
             )
         }
     }
@@ -59,39 +59,59 @@ fun bottomBar(navController: NavHostController) {
 @Composable
 fun RowScope.AddItem(
     screen: BottomBarScreen,
-    curentDestination: NavDestination?,
-    navController: NavHostController
+    currentDestination: NavDestination?,
+    navController: NavHostController,
 ) {
+    val selected = currentDestination?.hierarchy?.any() { it.route == screen.route } == true
+    val unselectedIconTint =
+        if (!selected) LocalContentColor.current.copy(alpha = 1f) else LocalContentColor.current
+    val textColor = if (selected) Color.White else Color.LightGray.copy(alpha = 0.9f)
+    val textStyle = TextStyle(fontSize = 10.sp, color = textColor, fontWeight = if (selected) FontWeight.ExtraBold else FontWeight.Bold)
+
     BottomNavigationItem(
         label = {
-            Text(text = screen.title,
-                style = TextStyle(fontSize = 10.sp)) // Reduce font size)
+            Text(
+                text = screen.title,
+                style = textStyle,
+                modifier = Modifier.alpha(1f),
+            ) // Reduce font size)
         },
         icon = {
             val icon = painterResource(id = screen.icon)
-            Icon(painter = icon, contentDescription = "Navigation Icon",modifier = Modifier.size(24.dp))
+            val modifier = if (selected) {
+                Modifier
+                    .size(26.dp)
+//                    .background(color = Color(0xFF7eb09b))
+            } else {
+                Modifier
+                    .size(24.dp)
+                    .alpha(0.8f) // This will make the unselected icon a bit transparent
+            }
+            Icon(
+                painter = icon,
+                contentDescription = "Navigation Icon",
+                modifier = modifier,
+                tint = unselectedIconTint,
+            )
         },
-        selected = curentDestination?.hierarchy?.any() {
-            it.route == screen.route
-        } == true,
-        modifier = if (curentDestination?.hierarchy?.any { it.route == screen.route } == true) {
+        selected = selected,
+        modifier = if (selected) {
             Modifier
         } else {
             Modifier.clickable { navController.navigate(screen.route) }
         },
         onClick = {
-            navController.navigate(screen.route){
+            navController.navigate(screen.route) {
                 popUpTo(navController.graph.findStartDestination().id)
-                launchSingleTop=true
+                launchSingleTop = true
             }
         },
-        unselectedContentColor = LocalContentColor.current.copy(alpha = ContentAlpha.disabled)
-
-
+        unselectedContentColor = LocalContentColor.current.copy(alpha = ContentAlpha.disabled),
     )
 }
-//@Preview(showBackground = true)
-//@Composable
-//fun PreviewMainScreenBottomBar() {
+
+// @Preview(showBackground = true)
+// @Composable
+// fun PreviewMainScreenBottomBar() {
 //    MainScreenBottomBar()
-//}
+// }
