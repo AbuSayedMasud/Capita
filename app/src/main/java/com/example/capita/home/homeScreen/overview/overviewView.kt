@@ -41,13 +41,13 @@ fun OverView(overview: Overview) {
             verticalAlignment = Alignment.CenterVertically,
         ) {
             // First Column - Icon and Full Name
-            Image(
-                painter = painterResource(id = overview.icon),
-                contentDescription = null,
-                modifier = Modifier
-                    .size(imageSize),
-            )
-
+//            Image(
+//                painter = painterResource(id = overview.icon),
+//                contentDescription = null,
+//                modifier = Modifier
+//                    .size(imageSize),
+//            )
+//
             Spacer(modifier = Modifier.width(8.dp)) // Space between Image and Texts
 
             // Second Column - Texts
@@ -84,8 +84,7 @@ fun OverView(overview: Overview) {
                 ) {
                     Text(
                         text = overview.amount.toString(),
-                        style = MaterialTheme.typography.subtitle1,
-                        fontSize = textSize,
+                        style = MaterialTheme.typography.body1.copy(fontWeight = FontWeight.Bold),
                         textAlign = TextAlign.End,
                     )
                 }
@@ -104,16 +103,12 @@ fun OverView(overview: Overview) {
                     )
                     Text(
                         text = overview.increase.toString(),
-                        style = MaterialTheme.typography.body1,
-                        fontSize = textSize,
+                        style = MaterialTheme.typography.body2,
+//                        fontSize = textSize,
                     )
-                }
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier
-                        .align(Alignment.End),
-//                        .padding(start = screenWidth * 0.08f)
-                ) {
+
+                    Spacer(modifier = Modifier.padding(1.dp))
+
                     Text("(", fontSize = textSize)
                     if (overview.percentage.toString() == "-") {
                         Image(
@@ -125,12 +120,20 @@ fun OverView(overview: Overview) {
                         )
                     }
                     Text(
-                        text = overview.percentage.toString(),
-                        style = MaterialTheme.typography.body1,
-                        fontSize = textSize,
+                        text = overview.percentage.toString() + "%",
+                        style = MaterialTheme.typography.body2,
+//                        fontSize = textSize,
                     )
                     Text(")", fontSize = textSize)
                 }
+//                Row(
+//                    verticalAlignment = Alignment.CenterVertically,
+//                    modifier = Modifier
+//                        .align(Alignment.End),
+//                        .padding(start = screenWidth * 0.08f)
+//                ) {
+//
+//                }
             }
         }
     }

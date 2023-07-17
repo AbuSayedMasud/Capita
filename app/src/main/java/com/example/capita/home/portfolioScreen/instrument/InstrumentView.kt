@@ -17,12 +17,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.Card
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -30,28 +26,40 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.capita.portfolio.instrument.Instrument
 
 @OptIn(ExperimentalMaterialApi::class, ExperimentalAnimationApi::class)
 @Composable
 fun InstrumentView(
-    icon: Painter,
-    longName: String,
-    shortName: String,
-    value: Double,
-    closedPrice: Double,
-    change: Double,
-    changeIcon: Int,
-    description: List<Pair<String, String>>,
+    instrument: Instrument,
+    expandedIndexInstrument: Int,
+    onCardClicked: (Int) -> Unit,
+
 ) {
+    val longName = instrument.longName
+    val shortName = instrument.shortName
+    val closedPrice = instrument.closedPrice
+    val value = instrument.value
+    val change = instrument.change
+    val changeIcon = instrument.changeIcon
+    val TotalQuantity = instrument.TotalQuantity
+    val SalableQuantity = instrument.SalableQuantity
+    val AverageCost = instrument.AverageCost
+    val TotalCost = instrument.TotalCost
+    val ClosePrice = instrument.ClosePrice
+    val UnrealizedGain = instrument.UnrealizedGain
+    val GainPercent = instrument.GainPercent
+    val CostValue = instrument.Costvalue
+
+    val isExpanded = expandedIndexInstrument == instrument.index
+
     var expanded by remember { mutableStateOf(false) }
     val configuration = LocalConfiguration.current
     val screenWidth = configuration.screenWidthDp.dp
@@ -70,27 +78,29 @@ fun InstrumentView(
         elevation = 8.dp,
         backgroundColor = Color(0xFFFFFFFF),
         shape = MaterialTheme.shapes.medium,
-        onClick = { expanded = !expanded },
+        onClick = { onCardClicked(instrument.index) },
     ) {
         Column(
             modifier = Modifier.padding(8.dp),
         ) {
             Row(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 4.dp),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                Box(
-                    modifier = Modifier
-                        .size(imageSize)
-                        .padding(screenWidth * 0.01f),
-                    contentAlignment = Alignment.Center,
-                ) {
-                    Image(
-                        painter = icon,
-                        contentDescription = null,
-                    )
-                }
-
+//                Box(
+//                    modifier = Modifier
+//                        .size(imageSize)
+//                        .padding(screenWidth * 0.01f),
+//                    contentAlignment = Alignment.Center,
+//                ) {
+//                    Image(
+//                        painter = icon,
+//                        contentDescription = null,
+//                    )
+//                }
+//
                 Spacer(modifier = Modifier.width(8.dp))
 
                 Column(modifier = Modifier.weight(textColumnWeight)) {
@@ -152,51 +162,44 @@ fun InstrumentView(
                         Text(")")
                     }
                 }
+                Spacer(modifier = Modifier.width(8.dp))
 
-                IconButton(onClick = { expanded = !expanded }) {
-                    Icon(
-                        imageVector = Icons.Default.ArrowDropDown,
-                        contentDescription = if (expanded) "Collapse" else "Expand",
-                        modifier = Modifier.rotate(if (expanded) 180f else 0f),
-                    )
-                }
+//                IconButton(onClick = { expanded = !expanded }) {
+//                    Icon(
+//                        imageVector = Icons.Default.ArrowDropDown,
+//                        contentDescription = if (expanded) "Collapse" else "Expand",
+//                        modifier = Modifier.rotate(if (expanded) 180f else 0f),
+//                    )
+//                }
             }
 
             AnimatedContent(
-                targetState = expanded,
+                targetState = isExpanded,
             ) { targetExpanded ->
                 AnimatedVisibility(
                     visible = targetExpanded,
                     enter = fadeIn() + expandVertically(),
                     exit = fadeOut() + shrinkVertically(),
                 ) {
-                    Card(
-                        modifier = Modifier.padding(top = 8.dp),
-                        elevation = 0.dp, // Set elevation to 0 to remove the shadow
-                        backgroundColor = Color.Transparent, // Set background color to transparent
-                        shape = MaterialTheme.shapes.medium,
-                        border = null, // Set border property to null to remove the border
-                    ) {
-                        Column(
-                            modifier = Modifier.padding(16.dp),
+                    if (isExpanded) {
+                        Card(
+                            modifier = Modifier.padding(top = 8.dp),
+                            elevation = 0.dp, // Set elevation to 0 to remove the shadow
+                            backgroundColor = Color.Transparent, // Set background color to transparent
+                            shape = MaterialTheme.shapes.medium,
+                            border = null, // Set border property to null to remove the border
                         ) {
-                            description.forEach { (desc, value) ->
-                                Row(
-                                    modifier = Modifier.fillMaxWidth(),
-                                ) {
-                                    Text(
-                                        text = desc,
-                                        style = MaterialTheme.typography.body2,
-                                        modifier = Modifier.weight(1f),
-                                    )
-                                    Spacer(modifier = Modifier.width(16.dp))
-                                    Text(
-                                        text = value,
-                                        style = MaterialTheme.typography.body2,
-                                        textAlign = TextAlign.End,
-                                        modifier = Modifier.weight(1f),
-                                    )
-                                }
+                            Column(
+                                modifier = Modifier.padding(16.dp),
+                            ) {
+                                InstrumentItem("Total Quantity", TotalQuantity)
+                                InstrumentItem("Salable Quantity", SalableQuantity)
+                                InstrumentItem("Average Cost", AverageCost)
+                                InstrumentItem("Total Cost", TotalCost)
+                                InstrumentItem("Close Price", ClosePrice)
+                                InstrumentItem("Unrealized Gain/Loss", UnrealizedGain)
+                                InstrumentItem("%Gain(Loss)", GainPercent)
+                                InstrumentItem("%Cost value", CostValue)
                             }
                         }
                     }

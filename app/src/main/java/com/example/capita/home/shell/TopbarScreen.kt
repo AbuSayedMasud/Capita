@@ -121,19 +121,19 @@ fun MyAppBar(
             }
         },
         // set as the app's logo
-        navigationIcon = if (!isSearching) {
-            {
-                IconButton(onClick = { }) {
-                    Image(
-                        painter = painter,
-                        contentDescription = "Logo",
-                        modifier = Modifier.size(46.dp),
-                    )
-                }
-            }
-        } else {
-            null
-        }, // This sets the navigation icon to the app's logo when not searching
+//        navigationIcon = if (!isSearching) {
+//            {
+//                IconButton(onClick = { }) {
+//                    Image(
+//                        painter = painter,
+//                        contentDescription = "Logo",
+//                        modifier = Modifier.size(46.dp),
+//                    )
+//                }
+//            }
+//        } else {
+//            null
+//        }, // This sets the navigation icon to the app's logo when not searching
         backgroundColor = myCustomColor,
     )
 }

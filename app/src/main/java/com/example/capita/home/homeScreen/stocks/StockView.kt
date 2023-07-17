@@ -47,17 +47,17 @@ fun StockView(stock: Stock) {
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                Box(
-                    modifier = Modifier
-                        .size(imageSize)
-                        .padding(screenWidth * 0.01f),
-                    contentAlignment = Alignment.Center,
-                ) {
-                    Image(
-                        painter = painterResource(id = stock.icon),
-                        contentDescription = null,
-                    )
-                }
+//                Box(
+//                    modifier = Modifier
+//                        .size(imageSize)
+//                        .padding(screenWidth * 0.01f),
+//                    contentAlignment = Alignment.Center,
+//                ) {
+//                    Image(
+//                        painter = painterResource(id = stock.icon),
+//                        contentDescription = null,
+//                    )
+//                }
 
                 Spacer(modifier = Modifier.width(8.dp))
 
@@ -90,7 +90,7 @@ fun StockView(stock: Stock) {
                         Text(
                             text = stock.value.toString(),
                             style = MaterialTheme.typography.body1.copy(fontWeight = FontWeight.Bold),
-                            fontSize = 14.sp,
+//                            fontSize = 14.sp,
                             textAlign = TextAlign.End,
                         )
                     }
@@ -107,7 +107,7 @@ fun StockView(stock: Stock) {
                         Text(
                             text = stock.closedPrice.toString(),
                             style = MaterialTheme.typography.body2,
-                            fontSize = textSize,
+//                            fontSize = textSize,
                             textAlign = TextAlign.End,
                         )
                         Text("(")
@@ -122,7 +122,7 @@ fun StockView(stock: Stock) {
                         Text(
                             text = stock.change.toString(),
                             style = MaterialTheme.typography.body2,
-                            fontSize = textSize,
+//                            fontSize = textSize,
                             textAlign = TextAlign.End,
                         )
                         Text(")")

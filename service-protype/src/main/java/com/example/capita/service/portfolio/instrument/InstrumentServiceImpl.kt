@@ -1,30 +1,45 @@
 package com.example.capita.service.portfolio.instrument
 
 import com.example.capita.portfolio.instrument.Instrument
-import com.example.capita.portfolio.instrument.BalanceService
+import com.example.capita.portfolio.instrument.InstrumentService
 import com.example.service.protype.R
 import java.util.Locale
 
-class InstrumentServiceImpl : BalanceService {
+class InstrumentServiceImpl : InstrumentService {
     val instruments = listOf(
         Instrument(
-            icon = R.drawable.aci,
+            index = 0,
             longName = "ACI Limited",
             shortName = "ACI",
             value = 100.0,
             closedPrice = 90.0,
             change = 10.0,
             changeIcon = R.drawable.baseline_add_24,
-            description = listOf(
-                "Total Quantity" to "500.00",
-                "Salable Quantity" to "450.00",
-                "Average Cost" to "800.00",
-                "Total Cost" to "2379.30",
-                "Close Price" to "593.90",
-                "Unrealized Gain/Loss" to "7889.00",
-                "%Gain(Loss)" to "35.45",
-                "%Cost value" to ".60",
-            ),
+            TotalQuantity = 500.00,
+            SalableQuantity = 450.00,
+            AverageCost = 800.00,
+            TotalCost = 2379.00,
+            ClosePrice = 593.90,
+            UnrealizedGain = 7889.00,
+            GainPercent = 35.45,
+            Costvalue = 0.60,
+        ),
+        Instrument(
+            index = 1,
+            longName = "ACME Limited",
+            shortName = "ACME",
+            value = 129.0,
+            closedPrice = 70.0,
+            change = 6.0,
+            changeIcon = R.drawable.baseline_add_24,
+            TotalQuantity = 500.00,
+            SalableQuantity = 450.00,
+            AverageCost = 800.00,
+            TotalCost = 2379.00,
+            ClosePrice = 593.90,
+            UnrealizedGain = 7889.00,
+            GainPercent = 35.45,
+            Costvalue = 0.60,
         ),
     )
 

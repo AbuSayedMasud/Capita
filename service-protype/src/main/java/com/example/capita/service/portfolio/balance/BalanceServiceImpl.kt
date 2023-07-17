@@ -5,10 +5,67 @@ import com.example.capita.portfolio.balance.BalanceService
 import java.util.Locale
 
 class BalanceServiceImpl : BalanceService {
-    val balance = listOf(
+    private val balanceData = listOf(
         Balance(
+            index = 0,
             Name = "Current Asset",
             value = 3395885.00,
+            Balance = 2947385.00,
+            ReceivablesSales = 0.0,
+            UnclearCheque = 449500.00,
+        ),
+        Balance(
+            index = 1,
+            Name = "Accrued Charge",
+            value = 0.0,
+            Balance = 2947385.00,
+            ReceivablesSales = 0.0,
+            UnclearCheque = 449500.00,
+        ),
+        Balance(
+            index = 2,
+            Name = "Deposit",
+            value = 3442319.00,
+            Balance = 2947385.00,
+            ReceivablesSales = 0.0,
+            UnclearCheque = 449500.00,
+        ),
+        Balance(
+            index = 3,
+            Name = "Withdrawal",
+            value = 0.0,
+            Balance = 2947385.00,
+            ReceivablesSales = 0.0,
+            UnclearCheque = 449500.00,
+        ),
+        Balance(
+            index = 4,
+            Name = "Value Of Securities",
+            value = 254264.00,
+            Balance = 2947385.00,
+            ReceivablesSales = 0.0,
+            UnclearCheque = 449500.00,
+        ),
+        Balance(
+            index = 5,
+            Name = "Equity",
+            value = 45922.00,
+            Balance = 2947385.00,
+            ReceivablesSales = 0.0,
+            UnclearCheque = 449500.00,
+        ),
+        Balance(
+            index = 6,
+            Name = "Ratio",
+            value = 0.0,
+            Balance = 2947385.00,
+            ReceivablesSales = 0.0,
+            UnclearCheque = 449500.00,
+        ),
+        Balance(
+            index = 7,
+            Name = "Purchase Power",
+            value = 2947385.00,
             Balance = 2947385.00,
             ReceivablesSales = 0.0,
             UnclearCheque = 449500.00,
@@ -22,7 +79,7 @@ class BalanceServiceImpl : BalanceService {
 
         val lowerCaseSearchText = searchText.lowercase(Locale.getDefault())
 
-        return balance.filter { balance ->
+        return balanceData.filter { balance ->
             (
                 balance.Name.contains(lowerCaseSearchText)
 //                            ||
@@ -37,6 +94,6 @@ class BalanceServiceImpl : BalanceService {
     }
 
     override fun listBalance(): List<Balance> {
-        return balance
+        return balanceData
     }
 }

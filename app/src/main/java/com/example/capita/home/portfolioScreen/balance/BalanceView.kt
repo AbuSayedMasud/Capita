@@ -13,12 +13,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Card
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -26,23 +22,29 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.capita.portfolio.balance.Balance
 
 @OptIn(ExperimentalMaterialApi::class, ExperimentalAnimationApi::class)
 @Composable
 fun BalanceView(
-    Name: String,
-    value: Double,
-    Balance: Double,
-    ReceivablesSales: Double,
-    UnclearCheque: Double,
+    balance: Balance,
+    expandedIndex: Int,
+    onCardClicked: (Int) -> Unit,
 ) {
+    val name = balance.Name
+    val value = balance.value
+    val Balance = balance.Balance
+    val receivablesSales = balance.ReceivablesSales
+    val unclearCheque = balance.UnclearCheque
+
+    val isExpanded = expandedIndex == balance.index
+
     var expanded by remember { mutableStateOf(false) }
     val configuration = LocalConfiguration.current
     val screenWidth = configuration.screenWidthDp.dp
@@ -61,18 +63,21 @@ fun BalanceView(
         elevation = 8.dp,
         backgroundColor = Color(0xFFFFFFFF),
         shape = MaterialTheme.shapes.medium,
-        onClick = { expanded = !expanded },
+        onClick = { onCardClicked(balance.index) },
     ) {
         Column(
             modifier = Modifier.padding(8.dp),
         ) {
             Row(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 8.dp),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
+                Spacer(modifier = Modifier.width(8.dp))
                 Column(modifier = Modifier.weight(textColumnWeight)) {
                     Text(
-                        text = Name,
+                        text = name,
                         style = MaterialTheme.typography.body1.copy(fontWeight = FontWeight.Bold),
                     )
                 }
@@ -89,45 +94,49 @@ fun BalanceView(
                     ) {
                         Text(
                             text = value.toString(),
-                            style = MaterialTheme.typography.body1.copy(fontWeight = FontWeight.Bold),
-                            fontSize = 14.sp,
+                            style = MaterialTheme.typography.body1,
+//                            fontSize = 14.sp,
                             textAlign = TextAlign.End,
                         )
                     }
                 }
-
-                IconButton(onClick = { expanded = !expanded }) {
-                    Icon(
-                        imageVector = Icons.Default.ArrowDropDown,
-                        contentDescription = if (expanded) "Collapse" else "Expand",
-                        modifier = Modifier.rotate(if (expanded) 180f else 0f),
-                    )
-                }
             }
 
+//                IconButton(onClick = { expanded = !expanded }) {
+//                    Icon(
+//                        imageVector = Icons.Default.ArrowDropDown,
+//                        contentDescription = if (expanded) "Collapse" else "Expand",
+//                        modifier = Modifier.rotate(if (expanded) 180f else 0f),
+//                    )
+//                }
+            Spacer(modifier = Modifier.width(8.dp))
+
             AnimatedContent(
-                targetState = expanded,
+                targetState = isExpanded,
             ) { targetExpanded ->
                 AnimatedVisibility(
                     visible = targetExpanded,
                     enter = fadeIn() + expandVertically(),
                     exit = fadeOut() + shrinkVertically(),
                 ) {
-                    Card(
-                        modifier = Modifier.padding(top = 8.dp),
-                        elevation = 0.dp, // Set elevation to 0 to remove the shadow
-                        backgroundColor = Color.Transparent, // Set background color to transparent
-                        shape = MaterialTheme.shapes.medium,
-                        border = null, // Set border property to null to remove the border
-                    ) {
-                        Column(modifier = Modifier.padding(8.dp)) {
-                            Text(text = "Balance: $Balance")
-                            Text(text = "Receivables Sales: $ReceivablesSales")
-                            Text(text = "Unclear Cheque: $UnclearCheque")
+                    if (isExpanded) {
+                        Card(
+                            modifier = Modifier.padding(top = 8.dp),
+                            elevation = 0.dp, // Set elevation to 0 to remove the shadow
+                            backgroundColor = Color.Transparent, // Set background color to transparent
+                            shape = MaterialTheme.shapes.medium,
+                            border = null, // Set border property to null to remove the border
+                        ) {
+                            Column(modifier = Modifier.padding(8.dp)) {
+                                BalanceItem("Balance", Balance)
+                                BalanceItem("Receivables Sales", receivablesSales)
+                                BalanceItem("Unclear Cheque", unclearCheque)
+                            }
                         }
                     }
                 }
             }
         }
     }
+    Spacer(modifier = Modifier.width(8.dp))
 }

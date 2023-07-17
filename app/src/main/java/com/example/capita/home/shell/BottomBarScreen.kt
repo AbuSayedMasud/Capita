@@ -9,7 +9,7 @@ sealed class BottomBarScreen(
 ) {
     object Home : BottomBarScreen(
         route = "home",
-        title = "Home",
+        title = "Market",
         icon = R.drawable.market_share,
 
     )

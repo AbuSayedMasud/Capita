@@ -66,17 +66,17 @@ fun NewsView(
 //            verticalAlignment = Alignment.CenterVertically,
 //            verticalAlignment = Alignment.Top,
         ) {
-            Box(
-                modifier = Modifier
-                    .size(imageSize)
-                    .padding(top = 16.dp),
-                contentAlignment = Alignment.Center,
-            ) {
-                Image(
-                    painter = icon,
-                    contentDescription = null,
-                )
-            }
+//            Box(
+//                modifier = Modifier
+//                    .size(imageSize)
+//                    .padding(top = 16.dp),
+//                contentAlignment = Alignment.Center,
+//            ) {
+//                Image(
+//                    painter = icon,
+//                    contentDescription = null,
+//                )
+//            }
 
             Spacer(modifier = Modifier.width(8.dp))
 
@@ -98,13 +98,13 @@ fun NewsView(
                     }
                 }
             }
-            IconButton(onClick = { expanded = !expanded }) {
-                Icon(
-                    imageVector = Icons.Default.ArrowDropDown,
-                    contentDescription = if (expanded) "Collapse" else "Expand",
-                    modifier = Modifier.rotate(if (expanded) 180f else 0f),
-                )
-            }
+//            IconButton(onClick = { expanded = !expanded }) {
+//                Icon(
+//                    imageVector = Icons.Default.ArrowDropDown,
+//                    contentDescription = if (expanded) "Collapse" else "Expand",
+//                    modifier = Modifier.rotate(if (expanded) 180f else 0f),
+//                )
+//            }
         }
     }
 }

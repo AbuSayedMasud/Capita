@@ -1,11 +1,11 @@
 package com.example.capita.home.bottomScreen
 
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.* // ktlint-disable no-wildcard-imports
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
-import androidx.compose.material.*
+import androidx.compose.material.* // ktlint-disable no-wildcard-imports
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -18,7 +18,7 @@ import com.example.capita.home.homeScreen.index.IndexScreen
 import com.example.capita.home.homeScreen.overview.OverviewScreen
 import com.example.capita.home.homeScreen.sectionBar.HomeSectionBar
 import com.example.capita.home.homeScreen.stocks.StockScreen
-import com.google.accompanist.pager.*
+import com.google.accompanist.pager.* // ktlint-disable no-wildcard-imports
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable

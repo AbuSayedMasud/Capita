@@ -31,7 +31,7 @@ fun IndexView(index: Indices) {
     val textSize = if (screenWidth > 600.dp) 14.sp else 12.sp
 
     Card(
-        modifier = Modifier.padding(16.dp, 8.dp),
+        modifier = Modifier.padding(16.dp, 6.dp),
         elevation = 0.dp,
         backgroundColor = Color(0xFFFFFFFF),
         shape = MaterialTheme.shapes.medium,
@@ -41,12 +41,12 @@ fun IndexView(index: Indices) {
             verticalAlignment = Alignment.CenterVertically,
         ) {
             // First Column - Icon and Full Name
-            Image(
-                painter = painterResource(id = index.icon),
-                contentDescription = null,
-                modifier = Modifier
-                    .size(imageSize),
-            )
+//            Image(
+//                painter = painterResource(id = index.icon),
+//                contentDescription = null,
+//                modifier = Modifier
+//                    .size(imageSize),
+//            )
 
             Spacer(modifier = Modifier.width(8.dp)) // Space between Image and Texts
 
@@ -69,6 +69,11 @@ fun IndexView(index: Indices) {
                         text = index.longName,
                         style = MaterialTheme.typography.body2,
                     )
+                    Text("|", modifier = Modifier.padding(horizontal = 2.dp))
+                    Text(
+                        text = index.market,
+                        style = MaterialTheme.typography.body2,
+                    )
                 }
             }
             Column(
@@ -84,8 +89,8 @@ fun IndexView(index: Indices) {
                 ) {
                     Text(
                         text = index.amount.toString(),
-                        style = MaterialTheme.typography.subtitle1,
-                        fontSize = textSize,
+                        style = MaterialTheme.typography.body1.copy(fontWeight = FontWeight.Bold),
+//                        fontSize = textSize,
                         textAlign = TextAlign.End,
                     )
                 }
@@ -104,16 +109,12 @@ fun IndexView(index: Indices) {
                     )
                     Text(
                         text = index.increase.toString(),
-                        style = MaterialTheme.typography.body1,
-                        fontSize = textSize,
+                        style = MaterialTheme.typography.body2,
+//                        fontSize = textSize,
                     )
-                }
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier
-                        .align(Alignment.End),
-//                        .padding(start = screenWidth * 0.08f)
-                ) {
+
+                    Spacer(modifier = Modifier.padding(1.dp))
+
                     Text("(", fontSize = textSize)
                     if (index.percentage.toString() == "-") {
                         Image(
@@ -125,9 +126,9 @@ fun IndexView(index: Indices) {
                         )
                     }
                     Text(
-                        text = index.percentage.toString(),
-                        style = MaterialTheme.typography.body1,
-                        fontSize = textSize,
+                        text = index.percentage.toString() + "%",
+                        style = MaterialTheme.typography.body2,
+//                        fontSize = textSize,
                     )
                     Text(")", fontSize = textSize)
                 }
