@@ -8,20 +8,20 @@ sealed class BottomBarScreen(
     val icon: Int,
 ) {
     object Home : BottomBarScreen(
-        route = "home",
+        route = "Market",
         title = "Market",
         icon = R.drawable.market_share,
 
     )
-    object News : BottomBarScreen(
+    object Service : BottomBarScreen(
         route = "news",
-        title = "News",
-        icon = R.drawable.newspaper,
+        title = "Service",
+        icon = R.drawable.service,
     )
-    object WatchList : BottomBarScreen(
-        route = "WatchList",
-        title = "WatchList",
-        icon = R.drawable.star,
+    object Trade : BottomBarScreen(
+        route = "Watchlist",
+        title = "Trade",
+        icon = R.drawable.trade,
     )
     object Portfolio : BottomBarScreen(
         route = "Portfolio",

@@ -1,45 +1,66 @@
 package com.example.capita.home.bottomScreen
 
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
+import androidx.compose.runtime.snapshotFlow
+import androidx.compose.ui.Modifier
 import com.example.capita.home.portfolioScreen.balance.BalanceScreen
-import com.example.capita.home.portfolioScreen.balance.BalanceView
 import com.example.capita.home.portfolioScreen.instrument.InstrumentScreen
+import com.example.capita.home.portfolioScreen.receivable.ReceivableScreen
 import com.example.capita.home.portfolioScreen.sectionBar.portfolioSectionBar
-import com.example.capita.service.portfolio.balance.BalanceServiceImpl
-import com.example.capita.service.portfolio.instrument.InstrumentServiceImpl
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun ProtfolioScreen() {
-    var portfolioSelectedSection by remember { mutableStateOf("Instrument") }
+fun PortfolioScreen() {
+    val sections = listOf(
+        "Instrument",
+        "Balance",
+        "Receivable",
+    )
 
-    Column {
+    val pagerState = rememberPagerState()
+    var portfolioSelectedSection by remember { mutableStateOf(0) }
+
+    LaunchedEffect(pagerState) {
+        snapshotFlow { pagerState.currentPage }.collect { page ->
+            portfolioSelectedSection = page
+        }
+    }
+
+    LaunchedEffect(portfolioSelectedSection) {
+        pagerState.animateScrollToPage(portfolioSelectedSection)
+    }
+
+    Column(modifier = Modifier.fillMaxSize()) {
         portfolioSectionBar(
+            sections = sections,
             portfolioSelectedSection = portfolioSelectedSection,
             onSectionSelected = { section ->
                 portfolioSelectedSection = section
             },
         )
 
-        val navController = rememberNavController()
-
-        NavHost(navController, startDestination = portfolioSelectedSection) {
-            composable("Instrument") {
-                InstrumentScreen()
-            }
-            composable("Balance") {
-                BalanceScreen()
-            }
-            composable("Receivable") {
+        HorizontalPager(
+            pageCount = sections.size,
+            state = pagerState,
+            modifier = Modifier.fillMaxSize(),
+        ) { page ->
+            Box(Modifier.fillMaxSize()) {
+                when (sections[page]) {
+                    "Instrument" -> InstrumentScreen()
+                    "Balance" -> BalanceScreen()
+                    "Receivable" -> ReceivableScreen()
+                }
             }
         }
     }

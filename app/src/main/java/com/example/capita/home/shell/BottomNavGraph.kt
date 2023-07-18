@@ -13,14 +13,14 @@ fun BottomNavGraph(navController: NavHostController, newsService: NewsService) {
         composable(BottomBarScreen.Home.route) {
             HomeScreen()
         }
-        composable(BottomBarScreen.News.route) {
+        composable(BottomBarScreen.Service.route) {
             NewsScreen(newsService = newsService)
         }
-        composable(BottomBarScreen.WatchList.route) {
+        composable(BottomBarScreen.Trade.route) {
             BookmarkScreen()
         }
         composable(BottomBarScreen.Portfolio.route) {
-            ProtfolioScreen()
+            PortfolioScreen()
         }
         composable(BottomBarScreen.More.route) {
             MoreScreen()
