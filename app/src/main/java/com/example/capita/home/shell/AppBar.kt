@@ -3,11 +3,9 @@ package com.example.capita.home.shell
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
-import androidx.compose.foundation.layout.size
-import androidx.compose.material.*
+import androidx.compose.material.* // ktlint-disable no-wildcard-imports
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Search
@@ -25,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.capita.R
 import com.example.capita.home.SearchActivity.SearchActivity
+import com.example.capita.home.menuScreen.ThemeActivity.ColorSelectionViewModel
 
 @Composable
 fun MyAppBar(
@@ -32,13 +31,16 @@ fun MyAppBar(
     title: String,
     onSearch: (String) -> Unit,
     showSearchBar: Boolean = false,
+    colorSelectionViewModel: ColorSelectionViewModel
 ) {
+    val myCustomColor = colorSelectionViewModel.appBarColor
+
     var searchText by remember { mutableStateOf("") } // Maintain the state of the search text
-    var isSearching by remember { mutableStateOf(showSearchBar) } // Maintain the state of whether the user is searching or not
-    var isActionSearch by remember { mutableStateOf(showSearchBar) }
+    val isSearching by remember { mutableStateOf(showSearchBar) } // Maintain the state of whether the user is searching or not
+    val isActionSearch by remember { mutableStateOf(showSearchBar) }
 
     val painter = painterResource(id = R.drawable.logo)
-    val myCustomColor = Color(0xFF006A4E)
+//    val myCustomColor = Color(0xFF006A4E)
 
     TopAppBar(
         /*If the user is searching, it creates a TextField for them to type their search query into.
@@ -120,7 +122,10 @@ fun MyAppBar(
                 }
             }
         },
-        // set as the app's logo
+        backgroundColor = myCustomColor,
+    )
+}
+// set as the app's logo
 //        navigationIcon = if (!isSearching) {
 //            {
 //                IconButton(onClick = { }) {
@@ -134,9 +139,7 @@ fun MyAppBar(
 //        } else {
 //            null
 //        }, // This sets the navigation icon to the app's logo when not searching
-        backgroundColor = myCustomColor,
-    )
-}
+
 // @Preview(showBackground = true)
 // @Composable
 // fun MyAppBarPreview() {

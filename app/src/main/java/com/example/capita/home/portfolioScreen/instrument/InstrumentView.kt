@@ -43,7 +43,7 @@ fun InstrumentView(
     onCardClicked: (Int) -> Unit,
 
 ) {
-    val longName = instrument.longName
+//    val longName = instrument.longName
     val shortName = instrument.shortName
     val closedPrice = instrument.closedPrice
     val value = instrument.value
@@ -108,7 +108,7 @@ fun InstrumentView(
                         text = shortName,
                         style = MaterialTheme.typography.body1.copy(fontWeight = FontWeight.Bold),
                     )
-                    Text(text = longName, style = MaterialTheme.typography.body2)
+                    Text(text = instrument.longName, style = MaterialTheme.typography.body2)
                 }
 
                 Column(

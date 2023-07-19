@@ -31,6 +31,7 @@ fun PortfolioScreen() {
     val pagerState = rememberPagerState()
     var portfolioSelectedSection by remember { mutableStateOf(0) }
 
+
     LaunchedEffect(pagerState) {
         snapshotFlow { pagerState.currentPage }.collect { page ->
             portfolioSelectedSection = page

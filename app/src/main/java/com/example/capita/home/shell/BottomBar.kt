@@ -2,33 +2,33 @@ package com.example.capita.home.shell
 
 import com.example.capita.R
 
-sealed class BottomBarScreen(
+sealed class BottomBar(
     val route: String,
     val title: String,
     val icon: Int,
 ) {
-    object Home : BottomBarScreen(
+    object Market : BottomBar(
         route = "Market",
         title = "Market",
         icon = R.drawable.market_share,
 
     )
-    object Service : BottomBarScreen(
-        route = "news",
+    object Service : BottomBar(
+        route = "Service",
         title = "Service",
         icon = R.drawable.service,
     )
-    object Trade : BottomBarScreen(
-        route = "Watchlist",
+    object Trade : BottomBar(
+        route = "Trade",
         title = "Trade",
         icon = R.drawable.trade,
     )
-    object Portfolio : BottomBarScreen(
+    object Portfolio : BottomBar(
         route = "Portfolio",
         title = "Portfolio",
         icon = R.drawable.user,
     )
-    object More : BottomBarScreen(
+    object Menu : BottomBar(
         route = "Menu",
         title = "Menu",
         icon = R.drawable.menu,

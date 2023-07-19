@@ -11,7 +11,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.capita.home.homeScreen.stocks.StockView
+import com.example.capita.home.menuScreen.ThemeActivity.ColorSelectionViewModel
 import com.example.capita.home.shell.MyAppBar
 import com.example.capita.home.ui.theme.CapitaTheme
 import com.example.capita.service.home.index.IndexServiceImpl
@@ -31,6 +33,8 @@ class SearchActivity : ComponentActivity() {
                 val index = remember { derivedStateOf { indexSearch.indexSearch(searchText) } }
 //                val overview = remember { derivedStateOf { overviewSearch.overviewSearch(searchText) } }
 
+                val colorSelectionViewModel = viewModel<ColorSelectionViewModel>()
+
                 Column {
                     MyAppBar(
                         context = this@SearchActivity,
@@ -39,6 +43,7 @@ class SearchActivity : ComponentActivity() {
                             searchText = newSearchText
                         },
                         showSearchBar = true,
+                        colorSelectionViewModel = colorSelectionViewModel,
                     )
 
                     LazyColumn {

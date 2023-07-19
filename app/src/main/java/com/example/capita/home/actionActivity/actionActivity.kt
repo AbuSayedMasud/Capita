@@ -11,7 +11,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.capita.home.HomeActivity
+import com.example.capita.home.menuScreen.ThemeActivity.ColorSelectionViewModel
 import com.example.capita.home.shell.MyAppBar
 import com.example.capita.home.ui.theme.CapitaTheme
 import com.example.capita.service.home.filter.FilterServiceImpl
@@ -32,6 +34,7 @@ class actionActivity : ComponentActivity() {
                         actionSearch.filterSearch(searchText)
                     }
                 }
+                val colorSelectionViewModel = viewModel<ColorSelectionViewModel>()
 
                 Column {
                     MyAppBar(
@@ -41,6 +44,7 @@ class actionActivity : ComponentActivity() {
                             searchText = newSearchText
                         },
                         showSearchBar = true,
+                        colorSelectionViewModel = colorSelectionViewModel,
                     )
 
                     LazyColumn {

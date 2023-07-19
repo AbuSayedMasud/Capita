@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.*
+import androidx.compose.material.* // ktlint-disable no-wildcard-imports
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -15,37 +15,40 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.example.capita.home.menuScreen.ThemeActivity.ColorSelectionViewModel
 import com.example.capita.service.news.NewsServiceImpl
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter", "SuspiciousIndentation")
 @Composable
-fun MainScreenBottomBar() {
+fun MainScreenBottomBar(colorSelectionViewModel: ColorSelectionViewModel) {
     val navController = rememberNavController()
     val newsService = NewsServiceImpl()
 //
-    Scaffold(bottomBar = { bottomBar(navController = navController) }) {
+    Scaffold(bottomBar = { bottomBar(navController = navController, bottomNavBarColor = colorSelectionViewModel.bottomNavBarColor) }) {
         BottomNavGraph(navController = navController, newsService = newsService)
     }
 }
 
 @Composable
-fun bottomBar(navController: NavHostController) {
+fun bottomBar(navController: NavHostController, bottomNavBarColor: Color) {
     val screens = listOf(
-        BottomBarScreen.Home,
-        BottomBarScreen.Service,
-        BottomBarScreen.Trade,
-        BottomBarScreen.Portfolio,
-        BottomBarScreen.More,
+        BottomBar.Market,
+        BottomBar.Service,
+        BottomBar.Trade,
+        BottomBar.Portfolio,
+        BottomBar.Menu,
     )
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
-    BottomNavigation(backgroundColor = Color(0xFF006A4E), contentColor = Color.White) {
+//    Color(0xFF006A4E)
+    BottomNavigation(backgroundColor = bottomNavBarColor, contentColor = Color.White) {
         screens.forEach { screen ->
             AddItem(
                 screen = screen,
@@ -58,7 +61,7 @@ fun bottomBar(navController: NavHostController) {
 
 @Composable
 fun RowScope.AddItem(
-    screen: BottomBarScreen,
+    screen: BottomBar,
     currentDestination: NavDestination?,
     navController: NavHostController,
 ) {

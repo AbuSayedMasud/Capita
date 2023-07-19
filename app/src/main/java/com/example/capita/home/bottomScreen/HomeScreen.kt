@@ -18,11 +18,12 @@ import com.example.capita.home.homeScreen.index.IndexScreen
 import com.example.capita.home.homeScreen.overview.OverviewScreen
 import com.example.capita.home.homeScreen.sectionBar.HomeSectionBar
 import com.example.capita.home.homeScreen.stocks.StockScreen
+import com.example.capita.home.menuScreen.ThemeActivity.ColorSelectionViewModel
 import com.google.accompanist.pager.* // ktlint-disable no-wildcard-imports
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun HomeScreen() {
+fun HomeScreen(colorSelectionViewModel: ColorSelectionViewModel) { // Pass the colorSelectionViewModel
     val sections = listOf(
         "Overview",
         "Indices",
@@ -49,6 +50,7 @@ fun HomeScreen() {
             onSectionSelected = { section ->
                 homeSelectedSection = section
             },
+            colorSelectionViewModel = colorSelectionViewModel, // Pass the colorSelectionViewModel
         )
 
         HorizontalPager(
@@ -66,6 +68,7 @@ fun HomeScreen() {
         }
     }
 }
+
 // @Composable
 // @Preview(showBackground = true)
 // fun HomeScreenPreview() {

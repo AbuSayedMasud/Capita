@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
+import com.example.capita.home.menuScreen.ThemeActivity.ColorSelectionViewModel
 import com.google.accompanist.pager.* // ktlint-disable no-wildcard-imports
 
 @SuppressLint("RememberReturnType")
@@ -20,20 +21,22 @@ fun HomeSectionBar(
     sections: List<String>,
     homeSelectedSection: Int,
     onSectionSelected: (Int) -> Unit,
+    colorSelectionViewModel: ColorSelectionViewModel,
 ) {
-    val lighterAppBarColor = Color(0xFFD1DED0)
+
+    val lighterColor = colorSelectionViewModel.lighterColor// Create a lighter shade of the selected color
 
     Surface(
-        color = lighterAppBarColor,
+        color = lighterColor, // Use the lighter color for the section bar
         modifier = Modifier.fillMaxWidth(),
     ) {
         TabRow(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(48.dp)
-                .background(lighterAppBarColor),
+                .background(lighterColor),
             selectedTabIndex = homeSelectedSection,
-            backgroundColor = lighterAppBarColor,
+            backgroundColor = lighterColor,
         ) {
             sections.forEachIndexed { index, section ->
                 Tab(
@@ -50,3 +53,4 @@ fun HomeSectionBar(
         }
     }
 }
+
