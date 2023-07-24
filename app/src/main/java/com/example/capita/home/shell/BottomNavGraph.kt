@@ -16,14 +16,14 @@ fun BottomNavGraph(navController: NavHostController, newsService: NewsService) {
         composable(BottomBar.Market.route) {
             HomeScreen(colorSelectionViewModel = colorSelectionViewModel)
         }
-        composable(BottomBar.Service.route) {
-            NewsScreen(newsService = newsService)
+        composable(BottomBar.Portfolio.route) {
+            PortfolioScreen(colorSelectionViewModel)
         }
         composable(BottomBar.Trade.route) {
             BookmarkScreen()
         }
-        composable(BottomBar.Portfolio.route) {
-            PortfolioScreen()
+        composable(BottomBar.Service.route) {
+            ServiceScreen()
         }
         composable(BottomBar.Menu.route) {
             MenuScreen(colorSelectionViewModel)

@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModel
 class ColorSelectionViewModel : ViewModel() {
     var appBarColor by mutableStateOf(Color(0xFF006A4E))
     var bottomNavBarColor by mutableStateOf(Color(0xFF006A4E))
-    var selectedColor by mutableStateOf(Color(0xFF006A4E))
-    var lighterColor by mutableStateOf(Color(0xFF006A4E))
+    var homeSectionBar by mutableStateOf(Color(0xFF006A4E))
+    var portfolioSectionBar by mutableStateOf(Color(0xFF006A4E))
 }
 

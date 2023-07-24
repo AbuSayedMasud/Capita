@@ -22,8 +22,9 @@ import com.example.capita.service.home.stock.StockServiceImpl
 class SearchActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContent {
+            val colorSelectionViewModel = viewModel<ColorSelectionViewModel>()
+
             CapitaTheme {
                 val service = StockServiceImpl()
                 val indexSearch = IndexServiceImpl()
@@ -32,8 +33,6 @@ class SearchActivity : ComponentActivity() {
                 val instruments = remember { derivedStateOf { service.stockSearch(searchText) } }
                 val index = remember { derivedStateOf { indexSearch.indexSearch(searchText) } }
 //                val overview = remember { derivedStateOf { overviewSearch.overviewSearch(searchText) } }
-
-                val colorSelectionViewModel = viewModel<ColorSelectionViewModel>()
 
                 Column {
                     MyAppBar(
@@ -44,6 +43,8 @@ class SearchActivity : ComponentActivity() {
                         },
                         showSearchBar = true,
                         colorSelectionViewModel = colorSelectionViewModel,
+                        profilePhoto = null,
+                        onProfileClick = null,
                     )
 
                     LazyColumn {
@@ -56,13 +57,13 @@ class SearchActivity : ComponentActivity() {
                             com.example.capita.home.homeScreen.index.IndexView(index)
                         }
                     }
-//                    LazyColumn {
-//                        items(items = overview.value){ overview ->
-//                            com.example.capita.home.homeScreen.overview.CardView(overview)
-//                        }
-//                    }
                 }
             }
         }
     }
 }
+//                    LazyColumn {
+//                        items(items = overview.value){ overview ->
+//                            com.example.capita.home.homeScreen.overview.CardView(overview)
+//                        }
+//                    }

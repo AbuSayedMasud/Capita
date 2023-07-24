@@ -9,6 +9,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.graphics.Color
 
 @Composable
@@ -24,8 +25,9 @@ fun ShowColorSelectionDialog(
         Color(0xFF9C27B0),
     )
 
-    val selectedColor = remember { mutableStateOf(viewModel.selectedColor) }
-    val lighterColor = remember { mutableStateOf(viewModel.lighterColor) }
+    val selectedColor = remember { mutableStateOf(viewModel.appBarColor) }
+    val homeSectionBarColor = rememberUpdatedState(viewModel.homeSectionBar)
+    val portfolioSectionBarColor = rememberUpdatedState(viewModel.portfolioSectionBar)
 
     AlertDialog(
         onDismissRequest = { onDismiss },
@@ -37,8 +39,8 @@ fun ShowColorSelectionDialog(
                     selectedColor = selectedColor.value,
                     onColorSelected = { color ->
                         selectedColor.value = color
-                        viewModel.selectedColor = color
-                        viewModel.lighterColor = color.copy(alpha = 0.1f) //
+                        viewModel.homeSectionBar = color
+                        viewModel.portfolioSectionBar = color
                     },
                 )
             }
@@ -47,6 +49,8 @@ fun ShowColorSelectionDialog(
             Button(onClick = {
                 viewModel.appBarColor = selectedColor.value
                 viewModel.bottomNavBarColor = selectedColor.value
+                viewModel.homeSectionBar = homeSectionBarColor.value // Use the updated homeSectionBarColor here
+                viewModel.portfolioSectionBar = portfolioSectionBarColor.value
                 onDismiss()
             }) {
                 Text("OK")

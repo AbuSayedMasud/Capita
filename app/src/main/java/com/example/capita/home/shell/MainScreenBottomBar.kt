@@ -40,9 +40,9 @@ fun MainScreenBottomBar(colorSelectionViewModel: ColorSelectionViewModel) {
 fun bottomBar(navController: NavHostController, bottomNavBarColor: Color) {
     val screens = listOf(
         BottomBar.Market,
-        BottomBar.Service,
-        BottomBar.Trade,
         BottomBar.Portfolio,
+        BottomBar.Trade,
+        BottomBar.Service,
         BottomBar.Menu,
     )
     val navBackStackEntry by navController.currentBackStackEntryAsState()

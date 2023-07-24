@@ -23,11 +23,14 @@ import com.google.accompanist.pager.* // ktlint-disable no-wildcard-imports
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun HomeScreen(colorSelectionViewModel: ColorSelectionViewModel) { // Pass the colorSelectionViewModel
+fun HomeScreen(colorSelectionViewModel: ColorSelectionViewModel) {
+    val lighterAppBarColor = colorSelectionViewModel.appBarColor.copy(alpha = 0.1f)
     val sections = listOf(
         "Overview",
         "Indices",
         "Stocks",
+        "Watchlist",
+        "News",
     )
     val pagerState = rememberPagerState()
     var homeSelectedSection by remember { mutableStateOf(0) }
@@ -50,7 +53,7 @@ fun HomeScreen(colorSelectionViewModel: ColorSelectionViewModel) { // Pass the c
             onSectionSelected = { section ->
                 homeSelectedSection = section
             },
-            colorSelectionViewModel = colorSelectionViewModel, // Pass the colorSelectionViewModel
+            homeSectionBarColor = lighterAppBarColor,
         )
 
         HorizontalPager(

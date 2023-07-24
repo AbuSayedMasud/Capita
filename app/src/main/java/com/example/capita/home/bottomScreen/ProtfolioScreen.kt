@@ -14,23 +14,27 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
+import com.example.capita.home.menuScreen.ThemeActivity.ColorSelectionViewModel
 import com.example.capita.home.portfolioScreen.balance.BalanceScreen
 import com.example.capita.home.portfolioScreen.instrument.InstrumentScreen
 import com.example.capita.home.portfolioScreen.receivable.ReceivableScreen
-import com.example.capita.home.portfolioScreen.sectionBar.portfolioSectionBar
+import com.example.capita.home.portfolioScreen.sectionBar.PortfolioSectionBar
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun PortfolioScreen() {
+fun PortfolioScreen(colorSelectionViewModel: ColorSelectionViewModel) {
+//    val colorSelectionViewModel = viewModel<ColorSelectionViewModel>()
+    val lighterAppBarColor = colorSelectionViewModel.appBarColor.copy(alpha = 0.1f)
+
     val sections = listOf(
         "Instrument",
         "Balance",
         "Receivable",
+        "Ledger",
     )
 
     val pagerState = rememberPagerState()
     var portfolioSelectedSection by remember { mutableStateOf(0) }
-
 
     LaunchedEffect(pagerState) {
         snapshotFlow { pagerState.currentPage }.collect { page ->
@@ -43,12 +47,13 @@ fun PortfolioScreen() {
     }
 
     Column(modifier = Modifier.fillMaxSize()) {
-        portfolioSectionBar(
+        PortfolioSectionBar(
             sections = sections,
             portfolioSelectedSection = portfolioSelectedSection,
             onSectionSelected = { section ->
                 portfolioSelectedSection = section
             },
+            portfolioSectionBarColor = lighterAppBarColor,
         )
 
         HorizontalPager(
