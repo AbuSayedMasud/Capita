@@ -4,7 +4,6 @@ import android.content.Intent
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import kotlinx.coroutines.launch
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -12,29 +11,28 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material.*
-import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.unit.dp
-
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.capita.home.HomeActivity
 import com.example.capita.R
+import com.example.capita.home.HomeActivity
 import com.example.capita.service.security.IdentityServiceImpl
-
+import kotlinx.coroutines.launch
 
 @Composable
 fun LoginScreen() {
@@ -53,7 +51,7 @@ fun LoginScreen() {
         modifier = Modifier
             .padding(34.dp)
             .fillMaxWidth(),
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Center,
     ) {
         Image(
             painter = painterResource(R.drawable.logo),
@@ -61,8 +59,7 @@ fun LoginScreen() {
             modifier = Modifier
                 .clip(shape = RoundedCornerShape(8.dp))
                 .align(Alignment.CenterHorizontally)
-                .padding(0.dp,100.dp,0.dp,100.dp)
-
+                .padding(0.dp, 100.dp, 0.dp, 100.dp),
 
         )
         Spacer(modifier = Modifier.height(10.dp))
@@ -71,7 +68,7 @@ fun LoginScreen() {
             shape = RoundedCornerShape(4.dp),
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 16.dp)
+                .padding(top = 16.dp),
         ) {
             OutlinedTextField(
                 value = username,
@@ -79,13 +76,13 @@ fun LoginScreen() {
                 label = { Text("Username") },
                 placeholder = { Text("Enter your username") },
                 colors = TextFieldDefaults.outlinedTextFieldColors(
-                    unfocusedLabelColor = Color.Gray,// Customize other colors as needed
+                    unfocusedLabelColor = Color.Gray, // Customize other colors as needed
                     unfocusedBorderColor = Color.Gray,
                     focusedBorderColor = colorResource(id = R.color.green),
                     focusedLabelColor = colorResource(id = R.color.green),
                     cursorColor = colorResource(id = R.color.green),
                     leadingIconColor = colorResource(id = R.color.green),
-                    placeholderColor = colorResource(id = R.color.green)
+                    placeholderColor = colorResource(id = R.color.green),
 
                 ),
                 leadingIcon = { Icon(Icons.Default.Person, contentDescription = "Username Icon") },
@@ -94,16 +91,13 @@ fun LoginScreen() {
                         Icon(
                             imageVector = Icons.Default.Clear,
                             contentDescription = "Clear Icon",
-                            modifier = Modifier.clickable { username = "" } ,
-                            tint = Color(0xFF006A4E)
-
+                            modifier = Modifier.clickable { username = "" },
+                            tint = Color(0xFF006A4E),
                         )
                     }
-
                 },
                 modifier = Modifier
-                    .fillMaxWidth()
-
+                    .fillMaxWidth(),
 
             )
         }
@@ -112,37 +106,38 @@ fun LoginScreen() {
             shape = RoundedCornerShape(4.dp),
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 16.dp)
-        ){OutlinedTextField(
-            value = password,
-            onValueChange = { password = it },
-            label = { Text("Password") },
-            placeholder = { Text("Enter your password") },
-            visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
-            leadingIcon = { Icon(Icons.Default.Lock, contentDescription = "Password Icon") },
-            trailingIcon = {
-                val visibilityIcon = if (passwordVisible) R.drawable.baseline_visibility_off_24 else R.drawable.baseline_visibility_24
-                val visibilityIconContentDescription = if (passwordVisible) "Hide password" else "Show password"
-                Icon(
-                    painter = painterResource(id = visibilityIcon),
-                    contentDescription = visibilityIconContentDescription,
-                    modifier = Modifier.clickable { passwordVisible = !passwordVisible },
-                    tint = colorResource(id = R.color.green)
-                )
-            },
-            colors = TextFieldDefaults.outlinedTextFieldColors(
-                unfocusedLabelColor = Color.Gray,
-                unfocusedBorderColor = Color.Gray,
-                focusedBorderColor = colorResource(id = R.color.green),
-                focusedLabelColor = colorResource(id = R.color.green),
-                cursorColor = colorResource(id = R.color.green),
-                leadingIconColor = colorResource(id = R.color.green),
-                placeholderColor = colorResource(id = R.color.green)
-            ),
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(Color.White)
-        )
+                .padding(top = 16.dp),
+        ) {
+            OutlinedTextField(
+                value = password,
+                onValueChange = { password = it },
+                label = { Text("Password") },
+                placeholder = { Text("Enter your password") },
+                visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+                leadingIcon = { Icon(Icons.Default.Lock, contentDescription = "Password Icon") },
+                trailingIcon = {
+                    val visibilityIcon = if (passwordVisible) R.drawable.baseline_visibility_off_24 else R.drawable.baseline_visibility_24
+                    val visibilityIconContentDescription = if (passwordVisible) "Hide password" else "Show password"
+                    Icon(
+                        painter = painterResource(id = visibilityIcon),
+                        contentDescription = visibilityIconContentDescription,
+                        modifier = Modifier.clickable { passwordVisible = !passwordVisible },
+                        tint = colorResource(id = R.color.green),
+                    )
+                },
+                colors = TextFieldDefaults.outlinedTextFieldColors(
+                    unfocusedLabelColor = Color.Gray,
+                    unfocusedBorderColor = Color.Gray,
+                    focusedBorderColor = colorResource(id = R.color.green),
+                    focusedLabelColor = colorResource(id = R.color.green),
+                    cursorColor = colorResource(id = R.color.green),
+                    leadingIconColor = colorResource(id = R.color.green),
+                    placeholderColor = colorResource(id = R.color.green),
+                ),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(Color.White),
+            )
         }
         Row(verticalAlignment = Alignment.CenterVertically) {
             Row(verticalAlignment = Alignment.CenterVertically) {
@@ -150,36 +145,33 @@ fun LoginScreen() {
                     checked = checked,
                     onCheckedChange = { isChecked ->
                         checked = isChecked
-
                     },
                     colors = CheckboxDefaults.colors(
                         uncheckedColor = Color(0xFF006A4E),
-                        checkedColor = colorResource(id = R.color.green)
+                        checkedColor = colorResource(id = R.color.green),
                     ),
 
-                    )
+                )
                 Text(
                     text = "Remember me",
-                    color = colorResource(id = R.color.green)
+                    color = colorResource(id = R.color.green),
                 )
-
-
             }
 
-            ClickableText(text = AnnotatedString("Forget Password?"),
+            ClickableText(
+                text = AnnotatedString("Forget Password?"),
                 onClick = { offset ->
                     isForgetClicked = true
                     scope.launch {
                         Toast.makeText(
                             context,
                             "Text clicked",
-                            Toast.LENGTH_SHORT
+                            Toast.LENGTH_SHORT,
                         ).show()
                     }
-
                 },
                 style = TextStyle(color = Color(0xFF006A4E)),
-                modifier = Modifier.padding(start = 10.dp)
+                modifier = Modifier.padding(start = 10.dp),
 
             )
         }
@@ -187,7 +179,7 @@ fun LoginScreen() {
         Button(
             onClick = {
                 val ids = IdentityServiceImpl()
-                if(ids.authenticate("", "")) {
+                if (ids.authenticate("", "")) {
                     val intent = Intent(context, HomeActivity::class.java)
                     startHomeActivity.launch(intent)
                 }
@@ -198,19 +190,17 @@ fun LoginScreen() {
 
             colors = ButtonDefaults.buttonColors(
                 backgroundColor = Color(0xFF006A4E),
-                contentColor = Color.White
+                contentColor = Color.White,
             ),
-            shape = RoundedCornerShape(20.dp)
+            shape = RoundedCornerShape(20.dp),
         ) {
             Text(
                 text = "Sign Up",
                 fontSize = 16.sp,
                 modifier = Modifier
-                    .padding(5.dp)
+                    .padding(5.dp),
 
             )
-
         }
     }
-
 }

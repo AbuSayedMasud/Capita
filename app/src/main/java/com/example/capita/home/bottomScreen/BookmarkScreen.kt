@@ -11,21 +11,23 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
-fun BookmarkScreen(){
-    Box(modifier=Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ){
+fun BookmarkScreen() {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center,
+    ) {
         Text(
             text = "WatchList",
             color = MaterialTheme.colors.primary,
             fontSize = MaterialTheme.typography.h3.fontSize,
-            fontWeight = FontWeight.Bold
+            fontWeight = FontWeight.Bold,
 
         )
     }
 }
+
 @Composable
 @Preview(showBackground = true)
-fun BookmarkScreenPreview(){
+fun BookmarkScreenPreview() {
     BookmarkScreen()
 }
