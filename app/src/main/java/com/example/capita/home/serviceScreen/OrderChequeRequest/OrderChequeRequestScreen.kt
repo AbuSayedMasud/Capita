@@ -30,21 +30,23 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.capita.service.service.ChequeServiceImpl.ChequeServiceImpl
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun OrderChequeRequestScreen() {
-    var selectedDropdownItem1 by remember { mutableStateOf("Item 1") }
-    var selectedDropdownItem2 by remember { mutableStateOf("Item 1") }
-    var selectedDropdownItem3 by remember { mutableStateOf("Item 1") }
+    val chequeService = ChequeServiceImpl()
+    val chequeList = chequeService.listChequeService()
 
-    val dropdownItem1 = listOf("Item 1", "Item 2", "Item 3")
-    val dropdownItem2 = listOf("Item 1", "Item 2", "Item 3")
-    val dropdownItem3 = listOf("Item 1", "Item 2", "Item 3")
+    // Create state variables for selected dropdown items
+    var selectedAccount by remember { mutableStateOf(chequeList.firstOrNull()?.account1 ?: "") }
+    var selectedBranch by remember { mutableStateOf(chequeList.firstOrNull()?.branch1 ?: "") }
+    var selectedDefinition by remember { mutableStateOf(chequeList.firstOrNull()?.definition1 ?: "") }
 
-    var isDropdownExpanded1 by remember { mutableStateOf(false) }
-    var isDropdownExpanded2 by remember { mutableStateOf(false) }
-    var isDropdownExpanded3 by remember { mutableStateOf(false) }
+    // Create state variables for dropdown menu visibility
+    var isAccountDropdownExpanded by remember { mutableStateOf(false) }
+    var isBranchDropdownExpanded by remember { mutableStateOf(false) }
+    var isDefinitionDropdownExpanded by remember { mutableStateOf(false) }
 
     Scaffold(
         content = {
@@ -61,33 +63,33 @@ fun OrderChequeRequestScreen() {
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
                     TextField(
-                        value = selectedDropdownItem1,
-                        onValueChange = { selectedDropdownItem1 = it },
+                        value = selectedAccount,
+                        onValueChange = { selectedAccount = it },
                         label = { Text("Bank Account") },
                         modifier = Modifier.fillMaxWidth(),
                         trailingIcon = {
                             IconButton(
-                                onClick = { isDropdownExpanded1 = !isDropdownExpanded1 },
+                                onClick = { isAccountDropdownExpanded  = !isAccountDropdownExpanded  },
                             ) {
                                 Icon(
-                                    if (isDropdownExpanded1) Icons.Default.Close else Icons.Default.ArrowDropDown,
+                                    if (isAccountDropdownExpanded) Icons.Default.Close else Icons.Default.ArrowDropDown,
                                     contentDescription = null,
                                 )
                             }
                         },
                     )
                     DropdownMenu(
-                        expanded = isDropdownExpanded1,
-                        onDismissRequest = { isDropdownExpanded1 = false },
+                        expanded = isAccountDropdownExpanded ,
+                        onDismissRequest = { isAccountDropdownExpanded  = false },
                     ) {
-                        dropdownItem1.forEach { item ->
+                        chequeList.forEach { cheque ->
                             DropdownMenuItem(
                                 onClick = {
-                                    selectedDropdownItem1 = item
-                                    isDropdownExpanded1 = false
+                                    selectedAccount  = cheque.account1
+                                    isAccountDropdownExpanded = false
                                 },
                             ) {
-                                Text(text = item)
+                                Text(text = cheque.account1)
                             }
                         }
                     }
@@ -99,33 +101,33 @@ fun OrderChequeRequestScreen() {
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
                     TextField(
-                        value = selectedDropdownItem2,
-                        onValueChange = { selectedDropdownItem2 = it },
+                        value = selectedBranch,
+                        onValueChange = { selectedBranch = it },
                         label = { Text("Delivery Branch") },
                         modifier = Modifier.fillMaxWidth(),
                         trailingIcon = {
                             IconButton(
-                                onClick = { isDropdownExpanded2 = !isDropdownExpanded2 },
+                                onClick = { isBranchDropdownExpanded = !isBranchDropdownExpanded },
                             ) {
                                 Icon(
-                                    if (isDropdownExpanded2) Icons.Default.Close else Icons.Default.ArrowDropDown,
+                                    if (isBranchDropdownExpanded) Icons.Default.Close else Icons.Default.ArrowDropDown,
                                     contentDescription = null,
                                 )
                             }
                         },
                     )
                     DropdownMenu(
-                        expanded = isDropdownExpanded2,
-                        onDismissRequest = { isDropdownExpanded2 = false },
+                        expanded = isBranchDropdownExpanded,
+                        onDismissRequest = { isBranchDropdownExpanded = false },
                     ) {
-                        dropdownItem2.forEach { item ->
+                        chequeList.forEach { cheque ->
                             DropdownMenuItem(
                                 onClick = {
-                                    selectedDropdownItem2 = item
-                                    isDropdownExpanded2 = false
+                                    selectedBranch = cheque.branch1
+                                    isBranchDropdownExpanded = false
                                 },
                             ) {
-                                Text(text = item)
+                                Text(text = cheque.branch1)
                             }
                         }
                     }
@@ -138,33 +140,33 @@ fun OrderChequeRequestScreen() {
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
                     TextField(
-                        value = selectedDropdownItem3,
-                        onValueChange = { selectedDropdownItem3 = it },
+                        value = selectedDefinition,
+                        onValueChange = { selectedDefinition = it },
                         label = { Text("Cheque Definition") },
                         modifier = Modifier.fillMaxWidth(),
                         trailingIcon = {
                             IconButton(
-                                onClick = { isDropdownExpanded3 = !isDropdownExpanded3 },
+                                onClick = { isDefinitionDropdownExpanded = !isDefinitionDropdownExpanded },
                             ) {
                                 Icon(
-                                    if (isDropdownExpanded3) Icons.Default.Close else Icons.Default.ArrowDropDown,
+                                    if (isDefinitionDropdownExpanded) Icons.Default.Close else Icons.Default.ArrowDropDown,
                                     contentDescription = null,
                                 )
                             }
                         },
                     )
                     DropdownMenu(
-                        expanded = isDropdownExpanded3,
-                        onDismissRequest = { isDropdownExpanded3 = false },
+                        expanded = isDefinitionDropdownExpanded,
+                        onDismissRequest = { isDefinitionDropdownExpanded = false },
                     ) {
-                        dropdownItem3.forEach { item ->
+                        chequeList.forEach { cheque ->
                             DropdownMenuItem(
                                 onClick = {
-                                    selectedDropdownItem3 = item
-                                    isDropdownExpanded3 = false
+                                    selectedDefinition = cheque.definition1
+                                    isDefinitionDropdownExpanded = false
                                 },
                             ) {
-                                Text(text = item)
+                                Text(text = cheque.definition1)
                             }
                         }
                     }
