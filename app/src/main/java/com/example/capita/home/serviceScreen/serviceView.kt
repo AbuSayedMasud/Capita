@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -18,14 +19,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.semantics.Role.Companion.Image
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.capita.service.Service
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun ServiceView(service: Service) {
+fun ServiceView(service: Service, onCardClick: () -> Unit) {
     val configuration = LocalConfiguration.current
     val screenWidth = configuration.screenWidthDp.dp
 
@@ -45,6 +46,7 @@ fun ServiceView(service: Service) {
         backgroundColor = Color(0xFFFFFFFF),
         shape = RoundedCornerShape(12.dp),
         border = BorderStroke(1.dp, Color.Gray),
+        onClick = onCardClick,
     ) {
         Row(
             modifier = Modifier

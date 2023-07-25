@@ -2,6 +2,7 @@ package com.example.capita.home.bottomScreen
 
 import android.annotation.SuppressLint
 import android.media.Image
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -27,7 +28,6 @@ import androidx.compose.ui.unit.sp
 import com.example.capita.R
 import com.example.capita.home.menuScreen.ThemeActivity.ColorSelectionViewModel
 import com.example.capita.home.menuScreen.ThemeActivity.ShowColorSelectionDialog
-import androidx.compose.foundation.Image
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterialApi::class)
@@ -64,23 +64,23 @@ fun MenuScreen(colorSelectionViewModel: ColorSelectionViewModel) {
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Box(
-                    modifier = Modifier
-                        .size(imageSize)
-                        .padding(screenWidth * 0.02f),
-                    contentAlignment = Alignment.Center,
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.theme),
-                        contentDescription = null,
-                    )
-                }
+                modifier = Modifier
+                    .size(imageSize)
+                    .padding(screenWidth * 0.02f),
+                contentAlignment = Alignment.Center,
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.theme),
+                    contentDescription = null,
+                )
+            }
 
             Column(modifier = Modifier.weight(textColumnWeight)) {
                 Text(
                     text = "Theme",
                     modifier = Modifier.padding(bottom = screenWidth * 0.01f),
                     style = MaterialTheme.typography.body1.copy(fontWeight = FontWeight.Bold),
-                    fontSize = 17.sp
+                    fontSize = 17.sp,
                 )
             }
         }
