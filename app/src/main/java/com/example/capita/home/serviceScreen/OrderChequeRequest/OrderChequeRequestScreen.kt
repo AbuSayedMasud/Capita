@@ -14,18 +14,15 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.Close
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import com.example.capita.home.menuScreen.ThemeActivity.ColorSelectionViewModel
-import com.example.capita.home.shell.MyAppBar
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
@@ -45,14 +42,78 @@ fun OrderChequeRequestScreen() {
                 TextField(
                     value = selectedDropdownItem,
                     onValueChange = { selectedDropdownItem = it },
-                    label = { Text("Select an item") },
+                    label = { Text("Bank Account") },
                     modifier = Modifier.fillMaxWidth(),
                     trailingIcon = {
                         IconButton(
                             onClick = { isDropdownExpanded = !isDropdownExpanded },
                         ) {
                             Icon(
-                                if (isDropdownExpanded) Icons.Default.Close else Icons.Default.Search,
+                                if (isDropdownExpanded) Icons.Default.Close else Icons.Default.ArrowDropDown,
+                                contentDescription = null,
+                            )
+                        }
+                    },
+                )
+                DropdownMenu(
+                    expanded = isDropdownExpanded,
+                    onDismissRequest = { isDropdownExpanded = false },
+                ) {
+                    dropdownItems.forEach { item ->
+                        DropdownMenuItem(
+                            onClick = {
+                                selectedDropdownItem = item
+                                isDropdownExpanded = false
+                            },
+                        ) {
+                            Text(text = item)
+                        }
+                    }
+                }
+                TextField(
+                    value = selectedDropdownItem,
+                    onValueChange = { selectedDropdownItem = it },
+                    label = { Text("Delivery Branch") },
+                    modifier = Modifier.fillMaxWidth(),
+                    trailingIcon = {
+                        IconButton(
+                            onClick = { isDropdownExpanded = !isDropdownExpanded },
+                        ) {
+                            Icon(
+                                if (isDropdownExpanded) Icons.Default.Close else Icons.Default.ArrowDropDown,
+                                contentDescription = null,
+                            )
+                        }
+                    },
+                )
+
+                DropdownMenu(
+                    expanded = isDropdownExpanded,
+                    onDismissRequest = { isDropdownExpanded = false },
+                ) {
+                    dropdownItems.forEach { item ->
+                        DropdownMenuItem(
+                            onClick = {
+                                selectedDropdownItem = item
+                                isDropdownExpanded = false
+                            },
+                        ) {
+                            Text(text = item)
+                        }
+                    }
+                }
+
+                TextField(
+                    value = selectedDropdownItem,
+                    onValueChange = { selectedDropdownItem = it },
+                    label = { Text("Cheque Definition") },
+                    modifier = Modifier.fillMaxWidth(),
+                    trailingIcon = {
+                        IconButton(
+                            onClick = { isDropdownExpanded = !isDropdownExpanded },
+                        ) {
+                            Icon(
+                                if (isDropdownExpanded) Icons.Default.Close else Icons.Default.ArrowDropDown,
                                 contentDescription = null,
                             )
                         }
