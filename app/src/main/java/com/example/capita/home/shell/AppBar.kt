@@ -112,19 +112,14 @@ fun MyAppBar(
                     ),
                 )
             } else {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.End,
-                ) {
-                    Text(
-                        text = title,
-                        color = Color.White,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(bottom = 2.dp)
-                            .offset(x = (-10).dp),
-                    ) // If not in search mode, just display the title
-                }
+                Text(
+                    text = title,
+                    color = Color.White,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = 2.dp)
+                        .offset(x = (-10).dp),
+                )
             }
         },
 
