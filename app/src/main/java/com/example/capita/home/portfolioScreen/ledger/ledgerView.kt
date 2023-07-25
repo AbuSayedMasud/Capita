@@ -47,7 +47,7 @@ fun ledgerView(ledger: Ledger) {
             // Check if description is not empty to show the second row
             if (ledger.description.isNotEmpty()) {
                 Spacer(modifier = Modifier.height(8.dp))
-
+                Log.d("ledger","asdbfsd")
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier.fillMaxWidth()
