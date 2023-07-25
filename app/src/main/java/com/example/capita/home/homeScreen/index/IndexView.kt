@@ -32,7 +32,7 @@ fun IndexView(index: Indices) {
 
     Card(
         modifier = Modifier.padding(16.dp, 6.dp),
-        elevation = 0.dp,
+        elevation = 2.dp,
         backgroundColor = Color(0xFFFFFFFF),
         shape = MaterialTheme.shapes.medium,
     ) {

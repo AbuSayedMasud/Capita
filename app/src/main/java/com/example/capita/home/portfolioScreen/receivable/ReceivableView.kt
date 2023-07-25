@@ -23,7 +23,7 @@ fun ReceivableView(receivable: Receivable) {
             .padding(16.dp, 8.dp),
 //            .border(width = 1.dp, color = Color.Black, shape = MaterialTheme.shapes.medium)
 //            .padding(8.dp),
-        elevation = 8.dp,
+        elevation = 2.dp,
         backgroundColor = Color(0xFFFFFFFF),
         shape = MaterialTheme.shapes.medium,
     ) {

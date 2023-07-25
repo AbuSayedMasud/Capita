@@ -75,7 +75,7 @@ fun InstrumentView(
 
     Card(
         modifier = Modifier.padding(16.dp, 8.dp),
-        elevation = 8.dp,
+        elevation = 2.dp,
         backgroundColor = Color(0xFFFFFFFF),
         shape = MaterialTheme.shapes.medium,
         onClick = { onCardClicked(instrument.index) },

@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.sp
 fun TotalView() {
     Card(
         modifier = Modifier
-            .padding(16.dp, 8.dp),
+            .padding(16.dp, 2.dp),
 //            .border(width = 1.dp, color = Color.Black, shape = MaterialTheme.shapes.medium)
 //            .padding(8.dp),
         elevation = 8.dp,

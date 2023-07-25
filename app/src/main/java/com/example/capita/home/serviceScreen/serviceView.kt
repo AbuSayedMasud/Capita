@@ -41,7 +41,7 @@ fun ServiceView(service: Service) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(16.dp, 6.dp),
-        elevation = 0.dp,
+        elevation = 2.dp,
         backgroundColor = Color(0xFFFFFFFF),
         shape = RoundedCornerShape(12.dp),
         border = BorderStroke(1.dp, Color.Gray),
@@ -53,7 +53,6 @@ fun ServiceView(service: Service) {
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(16.dp),
         ) {
-            // First Column - Icon and Full Name
             Box(
                 modifier = Modifier.size(imageSize),
                 contentAlignment = Alignment.Center,

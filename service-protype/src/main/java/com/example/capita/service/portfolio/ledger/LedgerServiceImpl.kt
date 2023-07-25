@@ -44,6 +44,14 @@ class LedgerServiceImpl: LedgerService {
             quantity = "",
             date = "28-jun-2023",
             identity = "debit"
+        ),
+        Ledger(
+            transferType = "Cheque Receive",
+            totalAmount =  10000.00,
+            description = "Test for final summation",
+            quantity = "",
+            date = "28-jun-2023",
+            identity = "credit"
         )
     )
     override fun listLedger(): List<Ledger> {

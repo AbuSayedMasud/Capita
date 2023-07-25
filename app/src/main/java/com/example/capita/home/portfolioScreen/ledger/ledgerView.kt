@@ -7,8 +7,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.capita.portfolio.ledger.Ledger
@@ -18,7 +21,7 @@ fun ledgerView(ledger: Ledger) {
     Card(
         modifier = Modifier
             .padding(16.dp, 8.dp),
-        elevation = 8.dp,
+        elevation = 2.dp,
         backgroundColor = Color(0xFFFFFFFF),
         shape = MaterialTheme.shapes.medium,
     ) {
@@ -29,19 +32,57 @@ fun ledgerView(ledger: Ledger) {
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier.fillMaxWidth()
             ) {
+                val plusSign = "+ "
+                val minusSign= "-"
+                val amount = ledger.totalAmount.toString()
                 Text(
                     text = ledger.transferType,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.weight(2f),
                     textAlign = TextAlign.Start,
                 )
-
-                Text(
-                    text = ledger.totalAmount.toString(),
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.weight(1f),
-                    textAlign = TextAlign.End,
-                )
+                if(ledger.identity=="credit"){
+                    Text(
+                        text = buildAnnotatedString {
+                            withStyle(
+                                style = SpanStyle(
+                                    color =Color(0xFF006A4E), // Set the color you want for the plus sign
+                                    fontWeight = FontWeight.Bold
+                                )
+                            ) {
+                                append(plusSign)
+                            }
+                            append(amount)
+                        },
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.weight(2f),
+                        textAlign = TextAlign.End,
+                    )
+                }
+                else{
+                    Text(
+                        text = buildAnnotatedString {
+                            withStyle(
+                                style = SpanStyle(
+                                    color = Color.Red, // Set the color you want for the plus sign
+                                    fontWeight = FontWeight.Bold
+                                )
+                            ) {
+                                append(minusSign)
+                            }
+                            append(amount)
+                        },
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.weight(2f),
+                        textAlign = TextAlign.End,
+                    )
+                }
+//                Text(
+//                    text = ledger.totalAmount.toString(),
+//                    fontWeight = FontWeight.Bold,
+//                    modifier = Modifier.weight(1f),
+//                    textAlign = TextAlign.End,
+//                )
             }
 
             // Check if description is not empty to show the second row
@@ -54,7 +95,7 @@ fun ledgerView(ledger: Ledger) {
                 ) {
                     Text(
                         text = ledger.description,
-                        fontWeight = FontWeight.Bold,
+                        fontWeight = FontWeight.Light,
                         fontSize = 12.sp,
                         modifier = Modifier.weight(2f),
                         textAlign = TextAlign.Start,
@@ -62,7 +103,7 @@ fun ledgerView(ledger: Ledger) {
 
                     Text(
                         text = ledger.quantity,
-                        fontWeight = FontWeight.Bold,
+                        fontWeight = FontWeight.Light,
                         fontSize = 12.sp,
                         modifier = Modifier.weight(1f),
                         textAlign = TextAlign.End,
@@ -82,9 +123,10 @@ fun ledgerView(ledger: Ledger) {
             ) {
                 Text(
                     text = ledger.date,
-                    fontSize = 12.sp,
+                    fontSize = 14.sp,
                     modifier = Modifier.weight(1f),
                     textAlign = TextAlign.Start,
+                    fontWeight = FontWeight.Bold
                 )
             }
         }
