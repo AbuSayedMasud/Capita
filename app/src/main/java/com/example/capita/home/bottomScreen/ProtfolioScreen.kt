@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import com.example.capita.home.menuScreen.ThemeActivity.ColorSelectionViewModel
 import com.example.capita.home.portfolioScreen.balance.BalanceScreen
 import com.example.capita.home.portfolioScreen.instrument.InstrumentScreen
+import com.example.capita.home.portfolioScreen.ledger.LedgerScreen
 import com.example.capita.home.portfolioScreen.receivable.ReceivableScreen
 import com.example.capita.home.portfolioScreen.sectionBar.PortfolioSectionBar
 
@@ -66,6 +67,7 @@ fun PortfolioScreen(colorSelectionViewModel: ColorSelectionViewModel) {
                     "Instrument" -> InstrumentScreen()
                     "Balance" -> BalanceScreen()
                     "Receivable" -> ReceivableScreen()
+                    "Ledger"-> LedgerScreen()
                 }
             }
         }
